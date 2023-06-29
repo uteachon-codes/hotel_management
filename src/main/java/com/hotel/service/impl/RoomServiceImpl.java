@@ -1,5 +1,6 @@
 package com.hotel.service.impl;
 
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 
@@ -24,6 +25,10 @@ public class RoomServiceImpl implements RoomService {
 	@Override
 	public Room createRoom(Room room) {
 
+		LocalDate currentDate = LocalDate.now();
+		
+		java.sql.Date sqlDate = java.sql.Date.valueOf(currentDate);
+		room.setCreateDate(sqlDate);
 		return roomRepository.save(room);
 
 	}
@@ -37,10 +42,9 @@ public class RoomServiceImpl implements RoomService {
 
 	@Override
 	public List<Room> getAllRoom() {
-		
+
 		List<Room> rooms = roomRepository.findAll();
 		return rooms;
 	}
-	
 
 }

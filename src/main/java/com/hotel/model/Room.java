@@ -6,10 +6,15 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
+import jakarta.persistence.Temporal;
+import jakarta.persistence.TemporalType;
 import lombok.Data;
+
+import java.sql.Date;
 
 import org.springframework.stereotype.Component;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonSubTypes.Type;
 import com.fasterxml.jackson.databind.JsonNode;
 
@@ -24,21 +29,29 @@ public class Room {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 
-	@Column(name = "room_number")
+	@Column(name = "room_number", unique = true)
 	private String roomNumber;
 
-	@Column(name = "room_name")
-	private String roomName;
+	@Column(name = "room_type")
+	private String roomType;
 
 	private String status;
 
-	@Column(name = "occupancy_min")
-	private int minOccupancy;
-
-	@Column(name = "occupancy_max")
+	@Column(name = "max_occupancy")
 	private int maxOccupancy;
-	
+
+	@Column(name = "amenities", columnDefinition = "json")
 	private String amenities;
+	
+	@JsonIgnore
+	@Temporal(TemporalType.DATE)
+	@Column(name = "create_date")
+	private Date createDate;
+	
+	@JsonIgnore
+	@Temporal(TemporalType.DATE)
+	@Column(name = "update_date")
+	private Date updateDate;
 
 	public int getId() {
 		return id;
@@ -56,12 +69,12 @@ public class Room {
 		this.roomNumber = roomNumber;
 	}
 
-	public String getRoomName() {
-		return roomName;
+	public String getRoomType() {
+		return roomType;
 	}
 
-	public void setRoomName(String roomName) {
-		this.roomName = roomName;
+	public void setRoomType(String roomType) {
+		this.roomType = roomType;
 	}
 
 	public String getStatus() {
@@ -70,14 +83,6 @@ public class Room {
 
 	public void setStatus(String status) {
 		this.status = status;
-	}
-
-	public int getMinOccupancy() {
-		return minOccupancy;
-	}
-
-	public void setMinOccupancy(int minOccupancy) {
-		this.minOccupancy = minOccupancy;
 	}
 
 	public int getMaxOccupancy() {
@@ -96,7 +101,20 @@ public class Room {
 		this.amenities = amenities;
 	}
 
+	public Date getCreateDate() {
+		return createDate;
+	}
 
+	public void setCreateDate(Date createDate) {
+		this.createDate = createDate;
+	}
 
+	public Date getUpdateDate() {
+		return updateDate;
+	}
+
+	public void setUpdateDate(Date updateDate) {
+		this.updateDate = updateDate;
+	}
 
 }
