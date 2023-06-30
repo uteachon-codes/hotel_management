@@ -40,7 +40,7 @@ public class RoomServiceImpl implements RoomService {
 		return room;
 	}
 
-	@Override
+	@Override	
 	public List<Room> getAllRoom() {
 
 		List<Room> rooms = roomRepository.findAll();
