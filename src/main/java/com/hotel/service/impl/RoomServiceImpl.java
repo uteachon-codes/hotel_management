@@ -26,7 +26,7 @@ public class RoomServiceImpl implements RoomService {
 	public Room createRoom(Room room) {
 
 		LocalDate currentDate = LocalDate.now();
-		
+
 		java.sql.Date sqlDate = java.sql.Date.valueOf(currentDate);
 		room.setCreateDate(sqlDate);
 		return roomRepository.save(room);
@@ -40,11 +40,37 @@ public class RoomServiceImpl implements RoomService {
 		return room;
 	}
 
-	@Override	
+	@Override
 	public List<Room> getAllRoom() {
 
 		List<Room> rooms = roomRepository.findAll();
 		return rooms;
+	}
+
+	// updateRoom() method gets the new room details in the newRoom object and the
+	// id of the room number to be changed. It gets the existing/old room object
+	// from the db.
+	// Updates the old room with the new room details.
+
+	@Override
+	public Room updateRoom(int id, Room newRoom) {
+
+		// Setting the updated time using the sql date
+		LocalDate currentDate = LocalDate.now();
+		java.sql.Date sqlDate = java.sql.Date.valueOf(currentDate);
+
+		Optional<Room> oldRoomOpt = roomRepository.findById(id);
+		Room oldRoom = oldRoomOpt.get();
+		oldRoom.setAmenities(newRoom.getAmenities());
+		oldRoom.setMaxOccupancy(newRoom.getMaxOccupancy());
+		oldRoom.setRoomNumber(newRoom.getRoomNumber());
+		oldRoom.setRoomType(newRoom.getRoomType());
+		oldRoom.setStatus(newRoom.getStatus());
+		oldRoom.setUpdateDate(sqlDate);
+
+		roomRepository.save(oldRoom);
+
+		return oldRoom;
 	}
 
 }

@@ -9,4 +9,5 @@ public interface RoomService {
 	public Room createRoom(Room room);
 	public Room getRoombyId(int id);
 	public List<Room> getAllRoom();
+	public Room updateRoom(int id,Room room);
 }

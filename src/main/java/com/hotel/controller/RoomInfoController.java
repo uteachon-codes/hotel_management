@@ -37,18 +37,27 @@ public class RoomInfoController {
 	public ResponseEntity<Room> createRoom(@RequestBody Room room) {
 		return new ResponseEntity<Room>(roomService.createRoom(room), HttpStatus.OK);
 	}
-	
+
 //	getRoomById() method/endpoint handles a GET request to get a Room by its id using Service layer
-	@RequestMapping(path="/get/{id}", method=RequestMethod.GET)
-	public ResponseEntity<Room> getRoomById(@PathVariable int id){
-		
-		return new ResponseEntity<Room>(roomService.getRoombyId(id),HttpStatus.OK);
+	@RequestMapping(path = "/get/{id}", method = RequestMethod.GET)
+	public ResponseEntity<Room> getRoomById(@PathVariable int id) {
+
+		return new ResponseEntity<Room>(roomService.getRoombyId(id), HttpStatus.OK);
 	}
-	
+
 //	getAllRooms() method/endpoint handles a GET request to get All the rooms using methods in servcie layer
-	@RequestMapping(path = "/get",method=RequestMethod.GET)
-	public List<Room> getAllRooms(){
+	@RequestMapping(path = "/get", method = RequestMethod.GET)
+	public List<Room> getAllRooms() {
 		List<Room> roomList = roomService.getAllRoom();
 		return roomList;
+	}
+
+	// updateRoom() method handles the patch request and is used to update the room
+	// details using the service method updateRoom
+	
+	@RequestMapping(path = "/update/{id}", method = RequestMethod.PATCH)
+	public ResponseEntity<Room> updateRoom(@PathVariable int id, @RequestBody Room room) {
+		Room updateRoom = roomService.updateRoom(id, room);
+		return new ResponseEntity<Room>(updateRoom, HttpStatus.OK);
 	}
 }
