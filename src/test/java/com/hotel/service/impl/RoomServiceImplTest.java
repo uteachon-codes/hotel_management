@@ -4,6 +4,7 @@ import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
+import java.sql.Date;
 import java.time.LocalDate;
 import java.util.Optional;
 
@@ -75,5 +76,49 @@ class RoomServiceImplTest {
 
 		// Assert
 		verify(roomRepository).save(room);
+	}
+
+	@Test
+	void updateRoom() {
+	      // Create a sample room object to use in the test
+        Room newRoom = new Room();
+        newRoom.setAmenities("TV, WiFi");
+        newRoom.setMaxOccupancy(2);
+        newRoom.setRoomNumber("101");
+        newRoom.setRoomType("Standard");
+        newRoom.setStatus("Available");
+
+        // Create a sample old room with some initial values
+        Room oldRoom = new Room();
+        oldRoom.setId(1); // Assuming the ID is 1
+        oldRoom.setAmenities("TV");
+        oldRoom.setMaxOccupancy(1);
+        oldRoom.setRoomNumber("102");
+        oldRoom.setRoomType("Standard");
+        oldRoom.setStatus("Occupied");
+        oldRoom.setUpdateDate(Date.valueOf(LocalDate.now().minusDays(1))); // Set the update date to one day ago
+
+        // Mock the behavior of roomRepository.findById
+        when(roomRepository.findById(1)).thenReturn(Optional.of(oldRoom));
+
+        // Call the method to update the room
+        Room updatedRoom = roomService.updateRoom(1, newRoom);
+
+        // Verify that the save method was called with the updated room object
+        verify(roomRepository).save(oldRoom);
+
+        // Verify that the old room's attributes have been updated
+        assertEquals("TV, WiFi", oldRoom.getAmenities());
+        assertEquals(2, oldRoom.getMaxOccupancy());
+        assertEquals("101", oldRoom.getRoomNumber());
+        assertEquals("Standard", oldRoom.getRoomType());
+        assertEquals("Available", oldRoom.getStatus());
+
+        // Verify that the update date is set to the current date
+        assertEquals(Date.valueOf(LocalDate.now()), oldRoom.getUpdateDate());
+
+        // Verify that the returned room is the same as the updated room
+        assertEquals(oldRoom, updatedRoom);
+
 	}
 }
