@@ -6,4 +6,4 @@
 - MySQL database
 - Postman for testing
 - AWS CLI (for serverless framework)
-- Eclipse or IntelliJ or some other IDE
+- Eclipse or IntelliJ or some other IDE or VisualStudio Code
