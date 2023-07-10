@@ -1,23 +1,20 @@
 package com.hotel.service.impl;
 
-import static org.junit.jupiter.api.Assertions.*;
-import static org.mockito.Mockito.verify;
-import static org.mockito.Mockito.when;
-
-import java.sql.Date;
-import java.time.LocalDate;
-import java.util.Optional;
-
-import org.junit.jupiter.api.BeforeEach;
+import com.hotel.model.Room;
+import com.hotel.repository.RoomRepository;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
-import com.hotel.model.Room;
-import com.hotel.repository.RoomRepository;
-import com.hotel.service.RoomService;
+import java.sql.Date;
+import java.time.LocalDate;
+import java.util.Optional;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.when;
 
 @ExtendWith(MockitoExtension.class)
 class RoomServiceImplTest {
@@ -75,6 +72,7 @@ class RoomServiceImplTest {
 		Room createRoom = roomService.createRoom(room);
 
 		// Assert
+		assertEquals(1, createRoom.getId());
 		verify(roomRepository).save(room);
 	}
 

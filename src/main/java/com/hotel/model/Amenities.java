@@ -2,28 +2,26 @@ package com.hotel.model;
 
 import org.springframework.stereotype.Component;
 
-import lombok.Data;
-
 @Component
 public class Amenities {
 
-	private boolean iron;
-	private boolean fridge;
+    private boolean iron;
+    private boolean fridge;
 
-	public boolean isIron() {
-		return iron;
-	}
+    public boolean isIron() {
+        return iron;
+    }
 
-	public void setIron(boolean iron) {
-		this.iron = iron;
-	}
+    public void setIron(boolean iron) {
+        this.iron = iron;
+    }
 
-	public boolean isFridge() {
-		return fridge;
-	}
+    public boolean isFridge() {
+        return fridge;
+    }
 
-	public void setFridge(boolean fridge) {
-		this.fridge = fridge;
-	}
+    public void setFridge(boolean fridge) {
+        this.fridge = fridge;
+    }
 
 }
