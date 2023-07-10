@@ -1,5 +1,42 @@
+# IntelliJ project files
+.idea/
 
-.idea/vcs.xml
-.idea/modules.xml
-.idea/misc.xml
-.idea/hotel_management.iml
+<<<<<<< HEAD
+### STS ###
+.apt_generated
+.classpath
+.factorypath
+.project
+.settings
+.springBeans
+.sts4-cache
+.mvn/
+mvnw
+mvnw.cmd
+=======
+# Compiled class files
+*.class
+>>>>>>> 5abbcb41852b64da5e9484171313dc28fa5e5284
+
+# Compiled output
+/out/
+
+# IntelliJ workspace files
+*.iml
+*.iws
+
+# Gradle files
+.gradle/
+build/
+
+# Maven files
+target/
+
+# Eclipse files
+.settings/
+.classpath
+.project
+
+# Operating System-specific files
+.DS_Store
+Thumbs.db
