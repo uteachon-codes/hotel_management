@@ -1,9 +1,7 @@
-HELP.md
-target/
-!.mvn/wrapper/maven-wrapper.jar
-!**/src/main/**/target/
-!**/src/test/**/target/
+# IntelliJ project files
+.idea/
 
+<<<<<<< HEAD
 ### STS ###
 .apt_generated
 .classpath
@@ -15,23 +13,30 @@ target/
 .mvn/
 mvnw
 mvnw.cmd
+=======
+# Compiled class files
+*.class
+>>>>>>> 5abbcb41852b64da5e9484171313dc28fa5e5284
 
-### IntelliJ IDEA ###
-.idea
-*.iws
+# Compiled output
+/out/
+
+# IntelliJ workspace files
 *.iml
-*.ipr
+*.iws
 
-### NetBeans ###
-/nbproject/private/
-/nbbuild/
-/dist/
-/nbdist/
-/.nb-gradle/
+# Gradle files
+.gradle/
 build/
-!**/src/main/**/build/
-!**/src/test/**/build/
 
-### VS Code ###
-.vscode/
+# Maven files
+target/
 
+# Eclipse files
+.settings/
+.classpath
+.project
+
+# Operating System-specific files
+.DS_Store
+Thumbs.db
