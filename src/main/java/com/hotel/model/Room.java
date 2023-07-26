@@ -6,7 +6,7 @@ import lombok.Data;
 import org.hibernate.annotations.DynamicInsert;
 import org.hibernate.annotations.DynamicUpdate;
 
-import java.sql.Date;
+import java.util.Date;
 
 // This class is used as a Entity that represents a persistent data entity in a database.
 

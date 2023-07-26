@@ -1,5 +1,7 @@
 package com.hotel.controller;
 
+import com.hotel.exception.BusinessException;
+import com.hotel.exception.SystemException;
 import com.hotel.model.Room;
 import com.hotel.repository.RoomRepository;
 import com.hotel.service.RoomService;
@@ -32,21 +34,37 @@ public class RoomInfoController {
 
     @RequestMapping(path = "/create", method = RequestMethod.POST)
     public ResponseEntity<Room> createRoom(@RequestBody Room room) {
-        return new ResponseEntity<Room>(roomService.createRoom(room), HttpStatus.OK);
+        try {
+            return new ResponseEntity<Room>(roomService.createRoom(room), HttpStatus.OK);
+        } catch (BusinessException e) {
+            return new ResponseEntity("Error Code :" + e.getErrorCode() + "\n" + e.getErrorMsg(), HttpStatus.BAD_REQUEST);
+        } catch (SystemException e) {
+            return new ResponseEntity("Error Code :" + e.getErrorCode() + "\n" + e.getErrorMsg(), HttpStatus.BAD_REQUEST);
+        }
     }
 
     //	getRoomById() method/endpoint handles a GET request to get a Room by its id using Service layer
     @RequestMapping(path = "/get/{id}", method = RequestMethod.GET)
     public ResponseEntity<Room> getRoomById(@PathVariable int id) {
-
-        return new ResponseEntity<Room>(roomService.getRoombyId(id), HttpStatus.OK);
+        try {
+            return new ResponseEntity<Room>(roomService.getRoombyId(id), HttpStatus.OK);
+        } catch (BusinessException e) {
+            return new ResponseEntity("Error Code :" + e.getErrorCode() + "\n" + e.getErrorMsg(), HttpStatus.BAD_REQUEST);
+        } catch (SystemException e) {
+            return new ResponseEntity("Error Code :" + e.getErrorCode() + "\n" + e.getErrorMsg(), HttpStatus.BAD_REQUEST);
+        }
     }
 
     //	getAllRooms() method/endpoint handles a GET request to get All the rooms using methods in servcie layer
     @RequestMapping(path = "/get", method = RequestMethod.GET)
-    public List<Room> getAllRooms() {
-        List<Room> roomList = roomService.getAllRoom();
-        return roomList;
+    public ResponseEntity<List<Room>> getAllRooms() {
+        List<Room> roomList = null;
+        try {
+            roomList = roomService.getAllRoom();
+        } catch (SystemException e) {
+            return new ResponseEntity("Error Code :" + e.getErrorCode() + "\n" + e.getErrorMsg(), HttpStatus.BAD_REQUEST);
+        }
+        return new ResponseEntity<List<Room>>(roomList, HttpStatus.OK);
     }
 
     // updateRoom() method handles the patch request and is used to update the room
@@ -55,6 +73,12 @@ public class RoomInfoController {
 
     @RequestMapping(path = "/update/{id}", method = RequestMethod.PATCH)
     public ResponseEntity<Room> updateRoom(@PathVariable int id, @RequestBody Map<String, Object> fields) {
-        return new ResponseEntity<Room>(roomService.updateRoomByFields(id, fields), HttpStatus.OK);
+        try {
+            return new ResponseEntity<Room>(roomService.updateRoomByFields(id, fields), HttpStatus.OK);
+        } catch (BusinessException e) {
+            return new ResponseEntity("Error Code :" + e.getErrorCode() + "\n" + e.getErrorMsg(), HttpStatus.BAD_REQUEST);
+        } catch (SystemException e) {
+            return new ResponseEntity("Error Code :" + e.getErrorCode() + "\n" + e.getErrorMsg(), HttpStatus.BAD_REQUEST);
+        }
     }
 }
