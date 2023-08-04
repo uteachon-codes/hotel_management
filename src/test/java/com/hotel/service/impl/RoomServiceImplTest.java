@@ -1,7 +1,5 @@
 package com.hotel.service.impl;
 
-import com.hotel.exception.BusinessException;
-import com.hotel.exception.SystemException;
 import com.hotel.model.Room;
 import com.hotel.repository.RoomRepository;
 import org.junit.jupiter.api.Test;
