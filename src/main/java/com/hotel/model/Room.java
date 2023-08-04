@@ -2,6 +2,8 @@ package com.hotel.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
+import jakarta.validation.constraints.Digits;
+import jakarta.validation.constraints.NotBlank;
 import lombok.Data;
 import org.hibernate.annotations.DynamicInsert;
 import org.hibernate.annotations.DynamicUpdate;
@@ -20,14 +22,18 @@ public class Room {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
+    @NotBlank(message ="Room Number cannot be blank")
     @Column(name = "room_number", unique = true)
     private String roomNumber;
 
+    @NotBlank(message="Room type cannot be blank")
     @Column(name = "room_type")
     private String roomType;
 
+    @NotBlank(message="Status cannot be blank")
     private String status;
 
+    @Digits(integer = 3, message = "max 999 occupancy", fraction = 0)
     @Column(name = "max_occupancy")
     private int maxOccupancy;
 

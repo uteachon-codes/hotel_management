@@ -1,18 +1,17 @@
 package com.hotel.service.impl;
 
-import com.hotel.exception.BusinessException;
-import com.hotel.exception.SystemException;
 import com.hotel.model.Room;
 import com.hotel.repository.RoomRepository;
 import com.hotel.service.RoomService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.dao.DataAccessException;
-import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Service;
 import org.springframework.util.ReflectionUtils;
 
 import java.lang.reflect.Field;
-import java.util.*;
+import java.util.Date;
+import java.util.List;
+import java.util.Map;
+import java.util.Optional;
 
 @Service
 public class RoomServiceImpl implements RoomService {
@@ -26,46 +25,25 @@ public class RoomServiceImpl implements RoomService {
     }
 
     @Override
-    public Room createRoom(Room room) throws BusinessException, SystemException {
-        try {
+    public Room createRoom(Room room)  {
             Date currentDate = new Date();
             room.setCreateDate(currentDate);
             return roomRepository.save(room);
-        }catch(DataIntegrityViolationException e){
-            String errorMsg = String.format("Room number %s already exists !!",room.getRoomNumber());
-            throw new BusinessException("110",errorMsg);
-        }catch(Exception e){
-            throw new SystemException("700","Something went wrong !!");
-        }
     }
 
     @Override
-    public Room getRoombyId(int id) throws BusinessException, SystemException {
+    public Room getRoombyId(int id) {
         Optional<Room> optionalRoom = roomRepository.findById(id);
-        Room room = null;
-        try{
-            room = optionalRoom.get();
-        }catch(NoSuchElementException e){
-            throw new BusinessException("100","Room Not Found");
-        }catch(DataAccessException e ){
-            throw new SystemException("500","Error Connecting DB !!");
-        }catch(Exception e){
-            throw new SystemException("700","Something went wrong !!");
-        }
-
+        Room room = optionalRoom.get();
         return room;
     }
 
     @Override
-    public List<Room> getAllRoom() throws SystemException {
+    public List<Room> getAllRoom()  {
 
-        try{
         List<Room> rooms = roomRepository.findAll();
         return rooms;
-        }catch(Exception e ){
-            String errorMsg = e.getMessage();
-            throw new SystemException("700",errorMsg);
-        }
+
     }
 
 
@@ -75,8 +53,8 @@ public class RoomServiceImpl implements RoomService {
     // from the db.
     // Updates the old room with the new room details
     @Override
-    public Room updateRoomByFields(int id, Map<String, Object> fields) throws BusinessException, SystemException {
-        try {
+    public Room updateRoomByFields(int id, Map<String, Object> fields) {
+
             Optional<Room> existingRoom = roomRepository.findById(id);
             fields.forEach((key, value) -> {
                 Field field = ReflectionUtils.findField(Room.class, key);
@@ -86,12 +64,7 @@ public class RoomServiceImpl implements RoomService {
             });
             existingRoom.get().setUpdateDate(new Date());
             return roomRepository.save(existingRoom.get());
-        }catch(NoSuchElementException e ){
-            throw new BusinessException("100","Room Not Found");
-        } catch(Exception e){
-            String errorMsg = e.getMessage();
-            throw new SystemException("700",errorMsg);
-        }
+
 
     }
 }
