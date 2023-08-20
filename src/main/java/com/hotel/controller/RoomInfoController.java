@@ -9,7 +9,6 @@ import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.Map;
 
 @RestController
 @Validated
@@ -51,8 +50,8 @@ public class RoomInfoController {
 
 
     @RequestMapping(path = "/update/{id}", method = RequestMethod.PATCH)
-    public ResponseEntity<Room> updateRoom(@PathVariable int id, @Valid @RequestBody Map<String, Object> fields) {
+    public ResponseEntity<Room> updateRoom(@PathVariable int id,@RequestBody Room room) {
 
-            return new ResponseEntity<Room>(roomService.updateRoomByFields(id, fields), HttpStatus.OK);
+            return new ResponseEntity<Room>(roomService.updateRoomByFields(id, room), HttpStatus.OK);
     }
 }

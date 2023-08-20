@@ -3,15 +3,17 @@ package com.hotel.service.impl;
 import com.hotel.model.Room;
 import com.hotel.repository.RoomRepository;
 import com.hotel.service.RoomService;
+import jakarta.validation.ConstraintViolation;
+import jakarta.validation.Valid;
+import jakarta.validation.Validation;
+import jakarta.validation.Validator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.util.ReflectionUtils;
 
-import java.lang.reflect.Field;
 import java.util.Date;
 import java.util.List;
-import java.util.Map;
 import java.util.Optional;
+import java.util.Set;
 
 @Service
 public class RoomServiceImpl implements RoomService {
@@ -52,19 +54,36 @@ public class RoomServiceImpl implements RoomService {
     // id of the room to be changed. It gets the existing/old room object
     // from the db.
     // Updates the old room with the new room details
-    @Override
-    public Room updateRoomByFields(int id, Map<String, Object> fields) {
 
-            Optional<Room> existingRoom = roomRepository.findById(id);
-            fields.forEach((key, value) -> {
-                Field field = ReflectionUtils.findField(Room.class, key);
-                field.setAccessible(true);
-                ReflectionUtils.setField(field, existingRoom.get(), value);
+    public Room updateRoomByFields(int id, Room room) {
 
-            });
-            existingRoom.get().setUpdateDate(new Date());
-            return roomRepository.save(existingRoom.get());
+            Optional<Room> existingRoomOpt = roomRepository.findById(id);
 
+            Room existingRoom = null;
 
-    }
+            if(existingRoomOpt.isPresent() ){
+                existingRoom = existingRoomOpt.get();
+                if(  room.getRoomType() !=null) {
+                    existingRoom.setRoomType(room.getRoomType());
+                }
+                if(room.getRoomNumber() !=null) {
+                    existingRoom.setRoomNumber(room.getRoomNumber());
+                }
+                if(room.getStatus() !=null) {
+                    existingRoom.setStatus(room.getStatus());
+                }
+                if(room.getAmenities() !=null) {
+                    existingRoom.setAmenities(room.getAmenities());
+                }
+                if(room.getMaxOccupancy() != 0 ){
+                    existingRoom.setMaxOccupancy(room.getMaxOccupancy());
+                }
+
+                room.setUpdateDate(new Date());
+                roomRepository.save(existingRoom);
+
+            }
+
+           return existingRoom;
+   }
 }

@@ -3,6 +3,8 @@ package com.hotel.model;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Digits;
+import jakarta.validation.constraints.Max;
+import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotBlank;
 import lombok.Data;
 import org.hibernate.annotations.DynamicInsert;
@@ -33,7 +35,8 @@ public class Room {
     @NotBlank(message="Status cannot be blank")
     private String status;
 
-    @Digits(integer = 3, message = "max 999 occupancy", fraction = 0)
+    @Min(value = 1, message = "min occupancy cannot be less than 1")
+    @Max(value = 150, message = "Max Occupancy cannot be more than 150")
     @Column(name = "max_occupancy")
     private int maxOccupancy;
 
