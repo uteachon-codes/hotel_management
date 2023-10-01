@@ -10,4 +10,6 @@ public interface CustomerService {
     public List<Customers> getAllCustomers();
 
     public Customers getCustomerById(int id);
+
+    public Customers updateCustomer(int id,Customers customers);
 }

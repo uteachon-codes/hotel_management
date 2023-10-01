@@ -34,4 +34,10 @@ public class CustomerInfoController {
     public ResponseEntity<Customers> getCustomers(@PathVariable int id){
         return new ResponseEntity<Customers>(customerService.getCustomerById(id),HttpStatus.OK);
     }
+
+    @RequestMapping(path="/update/{id}",method=RequestMethod.PATCH)
+    public ResponseEntity<Customers> updateCustomers(@PathVariable int id, @RequestBody Customers customers){
+
+        return new ResponseEntity<Customers>(customerService.updateCustomer(id,customers),HttpStatus.OK);
+    }
 }
