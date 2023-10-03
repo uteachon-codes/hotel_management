@@ -11,5 +11,6 @@ public interface CustomerService {
 
     public Customers getCustomerById(int id);
 
+    public List<Customers> getCustomerByName(String firstName, String lastName);
     public Customers updateCustomer(int id,Customers customers);
 }

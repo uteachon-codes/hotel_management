@@ -51,4 +51,14 @@ public class GlobalExceptionHandler {
         error.put("Error","Something went wrong !!");
         return error;
     }
+
+    @ResponseStatus(HttpStatus.BAD_REQUEST)
+    @ExceptionHandler(CustomerNotFoundException.class)
+    public Map<String, Integer> customerNotFoundException(CustomerNotFoundException ex){
+
+        Map<String, Integer> error = new HashMap<>();
+        error.put(ex.getMessage(),ex.getCustomerId());
+        return error;
+    }
+
 }

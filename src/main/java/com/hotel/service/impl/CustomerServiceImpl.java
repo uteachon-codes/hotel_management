@@ -32,6 +32,11 @@ public class CustomerServiceImpl implements CustomerService {
         return repository.findById(id).get();
     }
 
+    public List<Customers> getCustomerByName(String firstName, String lastName){
+
+        return repository.findByFirstNameAndLastName(firstName,lastName);
+    }
+
     @Override
     public Customers updateCustomer(int id, Customers customers) {
 

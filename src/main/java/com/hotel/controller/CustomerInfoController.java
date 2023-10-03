@@ -1,5 +1,6 @@
 package com.hotel.controller;
 
+import com.hotel.exception.CustomerNotFoundException;
 import com.hotel.model.Customers;
 import com.hotel.service.CustomerService;
 import jakarta.validation.Valid;
@@ -10,6 +11,7 @@ import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.NoSuchElementException;
 
 @RestController
 @Validated
@@ -32,8 +34,26 @@ public class CustomerInfoController {
 
 
     @RequestMapping(path = "/get/{id}",method= RequestMethod.GET)
-    public ResponseEntity<Customers> getCustomers(@PathVariable int id){
-        return new ResponseEntity<Customers>(customerService.getCustomerById(id),HttpStatus.OK);
+    public ResponseEntity<Customers> getCustomers(@PathVariable int id) {
+        Customers customer;
+        try {
+            customer = customerService.getCustomerById(id);
+        } catch (NoSuchElementException e) {
+            throw new CustomerNotFoundException("No customer exists with the given id", id);
+        }
+        return new ResponseEntity<Customers>(customer,HttpStatus.OK);
+
+    }
+
+    @RequestMapping(path="/get/{firstName}/{lastName}",method= RequestMethod.GET)
+    public ResponseEntity<List<Customers>> getCustomerByName(@PathVariable String firstName, @PathVariable String lastName){
+
+            List<Customers> customerByName = customerService.getCustomerByName(firstName, lastName);
+
+            if(customerByName.isEmpty()) {
+                throw new CustomerNotFoundException("Customer with given firstname " + firstName + " and last name " + lastName + " was not found ", 000);
+            }
+            return new ResponseEntity<List<Customers>>(customerByName,HttpStatus.OK);
     }
 
     @RequestMapping(path="/update/{id}",method=RequestMethod.PATCH)
