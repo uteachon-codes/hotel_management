@@ -2,6 +2,7 @@ package com.hotel.controller;
 
 import com.hotel.model.Customers;
 import com.hotel.service.CustomerService;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -20,7 +21,7 @@ public class CustomerInfoController {
 
 
     @RequestMapping(path = "/create", method = RequestMethod.POST)
-    public ResponseEntity<Customers> createCustomers(@RequestBody Customers customers){
+    public ResponseEntity<Customers> createCustomers(@Valid @RequestBody Customers customers){
         return new ResponseEntity<>(customerService.createCustomer(customers), HttpStatus.OK) ;
     }
 
@@ -36,7 +37,7 @@ public class CustomerInfoController {
     }
 
     @RequestMapping(path="/update/{id}",method=RequestMethod.PATCH)
-    public ResponseEntity<Customers> updateCustomers(@PathVariable int id, @RequestBody Customers customers){
+    public ResponseEntity<Customers> updateCustomers(@PathVariable int id,@RequestBody Customers customers){
 
         return new ResponseEntity<Customers>(customerService.updateCustomer(id,customers),HttpStatus.OK);
     }
