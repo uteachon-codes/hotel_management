@@ -1,5 +1,13 @@
 package com.hotel.exception;
 
+
+/**
+ * CustomerNotFoundException is a custom exception class that extends RuntimeException.
+ * It is used to indicate that a customer with a specified ID was not found in the system.
+ * This exception is typically thrown when attempting to retrieve or manipulate customer data.
+ *
+ * @author Abdul Basith
+ */
 public class CustomerNotFoundException extends RuntimeException{
 
     private String message;
