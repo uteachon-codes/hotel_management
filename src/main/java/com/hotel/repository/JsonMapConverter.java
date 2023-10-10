@@ -6,6 +6,7 @@ import jakarta.persistence.AttributeConverter;
 import jakarta.persistence.Converter;
 
 import java.io.IOException;
+import java.util.HashMap;
 import java.util.Map;
 
 
@@ -34,6 +35,12 @@ public class JsonMapConverter implements AttributeConverter<Map<String, Object>,
     @Override
     public Map<String, Object> convertToEntityAttribute(String dbData) {
         try {
+//            if(dbData == null){
+//                return (Map<String, Object>) new HashMap<>().put("amenities",null);
+//            }
+
+            // Use the conditional operator to provide a default value when dbData is null
+            dbData = (dbData != null) ? dbData : "{\"amenities\": null}";
             return objectMapper.readValue(dbData, Map.class);
         } catch (IOException e) {
             // Handle the exception appropriately
