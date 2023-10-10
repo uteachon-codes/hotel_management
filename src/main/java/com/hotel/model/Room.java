@@ -1,6 +1,7 @@
 package com.hotel.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.hotel.repository.JsonMapConverter;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Max;
 import jakarta.validation.constraints.Min;
@@ -10,9 +11,13 @@ import org.hibernate.annotations.DynamicInsert;
 import org.hibernate.annotations.DynamicUpdate;
 
 import java.util.Date;
+import java.util.Map;
 
-// This class is used as a Entity that represents a persistent data entity in a database.
-
+/**
+ * This class is used as a Entity that represents a persistent data entity in a database.
+ *
+ * @author Abdul Basith
+ */
 @Entity
 @Table(name = "room_info")
 @Data
@@ -23,15 +28,15 @@ public class Room {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
-    @NotBlank(message ="Room Number cannot be blank")
+    @NotBlank(message = "Room Number cannot be blank")
     @Column(name = "room_number", unique = true)
     private String roomNumber;
 
-    @NotBlank(message="Room type cannot be blank")
+    @NotBlank(message = "Room type cannot be blank")
     @Column(name = "room_type")
     private String roomType;
 
-    @NotBlank(message="Status cannot be blank")
+    @NotBlank(message = "Status cannot be blank")
     private String status;
 
     @Min(value = 1, message = "min occupancy cannot be less than 1")
@@ -40,7 +45,8 @@ public class Room {
     private int maxOccupancy;
 
     @Column(name = "amenities", columnDefinition = "json")
-    private String amenities;
+    @Convert(converter = JsonMapConverter.class)
+    private Map<String, Object> amenities;
 
     @JsonIgnore
     @Temporal(TemporalType.DATE)

@@ -1,6 +1,6 @@
 package com.hotel.service.impl;
 
-import com.hotel.model.Customers;
+import com.hotel.model.Customer;
 import com.hotel.repository.CustomerRepository;
 import com.hotel.service.CustomerService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,76 +9,84 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 import java.util.Optional;
 
+
+/**
+ * The CustomerServiceImpl class implements the CustomerService interface and provides
+ * the business logic for managing customer data. It interacts with the CustomerRepository
+ * to perform CRUD operations on customer records.
+ *
+ * @author Abdul Basith
+ */
 @Service
 public class CustomerServiceImpl implements CustomerService {
 
     @Autowired
     private CustomerRepository repository;
     @Override
-    public Customers createCustomer(Customers customers) {
+    public Customer createCustomer(Customer customer) {
 
-        return repository.save(customers);
+        return repository.save(customer);
 
     }
 
     @Override
-    public List<Customers> getAllCustomers() {
+    public List<Customer> getAllCustomers() {
         return repository.findAll();
     }
 
     @Override
-    public Customers getCustomerById(int id) {
+    public Customer getCustomerById(int id) {
 
         return repository.findById(id).get();
     }
 
-    public List<Customers> getCustomerByName(String firstName, String lastName){
+    public List<Customer> getCustomerByName(String firstName, String lastName){
 
         return repository.findByFirstNameAndLastName(firstName,lastName);
     }
 
     @Override
-    public Customers updateCustomer(int id, Customers customers) {
+    public Customer updateCustomer(int id, Customer customer) {
 
-        Optional<Customers> existingCustomerOpt = repository.findById(id);
+        Optional<Customer> existingCustomerOpt = repository.findById(id);
 
-        Customers existingCustomer = null;
+        Customer existingCustomer = null;
 
         if(existingCustomerOpt.isPresent()){
             existingCustomer = existingCustomerOpt.get();
 
-             if(customers.getCity()!=null){
-                existingCustomer.setCity(customers.getCity());
+             if(customer.getCity()!=null){
+                existingCustomer.setCity(customer.getCity());
              }
-             if(customers.getCountry()!=null){
-                existingCustomer.setCountry(customers.getCountry());
+             if(customer.getCountry()!=null){
+                existingCustomer.setCountry(customer.getCountry());
             }
-             if(customers.getState()!=null){
-                existingCustomer.setState(customers.getState());
+             if(customer.getState()!=null){
+                existingCustomer.setState(customer.getState());
             }
-             if(customers.getFirstName()!=null){
-                existingCustomer.setFirstName(customers.getFirstName());
+             if(customer.getFirstName()!=null){
+                existingCustomer.setFirstName(customer.getFirstName());
             }
-             if(customers.getLastName()!=null){
-                existingCustomer.setLastName(customers.getLastName());
+             if(customer.getLastName()!=null){
+                existingCustomer.setLastName(customer.getLastName());
             }
-             if(customers.getZip()!=null){
-                existingCustomer.setZip(customers.getZip());
+             if(customer.getZip()!=null){
+                existingCustomer.setZip(customer.getZip());
             }
-             if(customers.getEmailAddress()!=null) {
-                existingCustomer.setEmailAddress(customers.getEmailAddress());
+             if(customer.getEmailAddress()!=null) {
+                existingCustomer.setEmailAddress(customer.getEmailAddress());
             }
-             if(customers.getPreferences()!=null){
-                existingCustomer.setPreferences(customers.getPreferences());
+             if(customer.getPreferences()!=null){
+                existingCustomer.setPreferences(customer.getPreferences());
             }
-             if(customers.getAdditionalAddressInfo()!=null){
-                existingCustomer.setAdditionalAddressInfo(customers.getAdditionalAddressInfo());
+             if(customer.getAdditionalAddressInfo()!=null){
+                existingCustomer.setAdditionalAddressInfo(customer.getAdditionalAddressInfo());
             }
-             if(customers.getStreetAddress()!=null){
-                existingCustomer.setStreetAddress(customers.getStreetAddress());
+             if(customer.getStreetAddress()!=null){
+                existingCustomer.setStreetAddress(customer.getStreetAddress());
             }
-             if(customers.getPhoneNumber()!=null){
-                existingCustomer.setPhoneNumber(customers.getPhoneNumber());
+             if(customer.getPhoneNumber()!=null){
+                existingCustomer.setPhoneNumber(customer.getPhoneNumber());
             }
 
              repository.save(existingCustomer);

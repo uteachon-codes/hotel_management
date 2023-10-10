@@ -1,5 +1,6 @@
 package com.hotel.model;
 
+import com.hotel.repository.JsonMapConverter;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
@@ -8,12 +9,21 @@ import lombok.Data;
 import org.hibernate.annotations.DynamicInsert;
 import org.hibernate.annotations.DynamicUpdate;
 
+import java.util.Map;
+
+/**
+ * The Customer class represents a customer entity in the system.
+ * It defines the attributes and constraints for customer data, including personal information
+ * and preferences, and provides getters and setters for accessing and modifying this data.
+ *
+ * @author Abdul Basith
+ */
 @Entity
 @Table(name = "customer")
 @Data
 @DynamicInsert
 @DynamicUpdate
-public class Customers {
+public class Customer {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -53,5 +63,7 @@ public class Customers {
 
     private String country;
 
-    private String preferences;
+    @Column(name="preferences",columnDefinition = "json")
+    @Convert(converter = JsonMapConverter.class)
+    private Map<String,Object> preferences;
 }
