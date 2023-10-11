@@ -46,4 +46,27 @@ public class ReservationInfoController {
         return new ResponseEntity<List<Reservation>>(reservationService.getReservationBetweenCheckInDates(sDate,eDate),HttpStatus.OK);
 
     }
+
+
+    /*
+    *  This controller method returns the reservations taking input as customer partialName
+    * */
+    @RequestMapping(path = "/getPartialName/{partialName}",method = RequestMethod.GET)
+    public  ResponseEntity<List<List<Reservation>>> getReservationWithPartialName(@PathVariable String partialName){
+        // Retrieve reservations based on a partial name from the service.
+        List<List<Reservation>> reservations = reservationService.getReservationCustomerPartialFirstName(partialName);
+        // Return the reservations in a ResponseEntity with an HTTP OK status.
+            return new ResponseEntity<List<List<Reservation>>>(reservations,HttpStatus.OK);
+
+    }
+
+    @RequestMapping(path = "/get/{customerId}",method = RequestMethod.GET)
+    public  ResponseEntity<List<Reservation>> getreservationsByCustomerId(@PathVariable int customerId){
+
+        List<Reservation> reservations = reservationService.reservationsByCustomerId(customerId);
+
+
+        return new ResponseEntity<List<Reservation>>(reservations,HttpStatus.OK);
+
+    }
 }

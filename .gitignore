@@ -40,3 +40,6 @@ target/
 # Operating System-specific files
 .DS_Store
 Thumbs.db
+
+# vscode file
+.vscode/

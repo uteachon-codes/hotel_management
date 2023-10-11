@@ -94,5 +94,12 @@ public class CustomerServiceImpl implements CustomerService {
         return existingCustomer;
     }
 
+    @Override
+    public List<Customer> getCustomerByPartialFirstName(String partialName) {
+
+        return repository.findByFirstNameContaining(partialName);
+
+    }
+
 
 }

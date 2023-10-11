@@ -1,6 +1,6 @@
 package com.hotel.controller;
 
-import com.hotel.exception.CustomerNotFoundException;
+import com.hotel.exception.EntityNotFoundException;
 import com.hotel.model.Customer;
 import com.hotel.service.CustomerService;
 import jakarta.validation.Valid;
@@ -24,7 +24,6 @@ import java.util.NoSuchElementException;
 @Validated
 @RequestMapping(value = "/customer")
 public class CustomerInfoController {
-
     @Autowired
     private CustomerService customerService;
 
@@ -46,7 +45,7 @@ public class CustomerInfoController {
         try {
             customer = customerService.getCustomerById(id);
         } catch (NoSuchElementException e) {
-            throw new CustomerNotFoundException("No customer exists with the given id", id);
+            throw new EntityNotFoundException("No customer exists with the given id", id);
         }
         return new ResponseEntity<Customer>(customer, HttpStatus.OK);
 
@@ -58,7 +57,7 @@ public class CustomerInfoController {
         List<Customer> customerByName = customerService.getCustomerByName(firstName, lastName);
 
         if (customerByName.isEmpty()) {
-            throw new CustomerNotFoundException("Customer with given firstname " + firstName + " and last name " + lastName + " was not found ", 000);
+            throw new EntityNotFoundException("Customer with given firstname " + firstName + " and last name " + lastName + " was not found ", 000);
         }
         return new ResponseEntity<List<Customer>>(customerByName, HttpStatus.OK);
     }
@@ -68,4 +67,15 @@ public class CustomerInfoController {
 
         return new ResponseEntity<Customer>(customerService.updateCustomer(id, customer), HttpStatus.OK);
     }
+
+    @RequestMapping(path="/getFirst/{partialFirstName}",method = RequestMethod.GET)
+    public ResponseEntity<List<Customer>> getCustomerByPartialFirstName(@PathVariable String partialFirstName){
+        List<Customer> customerByName = customerService.getCustomerByPartialFirstName(partialFirstName);
+        if (customerByName.isEmpty()) {
+            throw new EntityNotFoundException("Customer with given partial name "+ partialFirstName+" was not found ", 000);
+        }
+
+        return new ResponseEntity<List<Customer>>(customerByName,HttpStatus.OK);
+    }
+
 }

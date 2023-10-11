@@ -10,6 +10,10 @@ import java.util.List;
 @Repository
 public interface ReservationRepository extends JpaRepository<Reservation,Long> {
 
+    // This method returns the reservation(s) between a particula checkin dates
     List<Reservation> findByCheckInDateBetween(Date startDate, Date endDate);
+
+    // This method returns the reservation(s) given a customer id
+    List<Reservation> findByCustomerId(int customerId);
 }
 

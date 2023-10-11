@@ -12,4 +12,8 @@ public interface ReservationService {
     public List<Reservation> getAllReservations();
 
     public List<Reservation> getReservationBetweenCheckInDates(Date startDate, Date endDate);
+
+    public List<List<Reservation>> getReservationCustomerPartialFirstName(String partialName);
+
+    public List<Reservation> reservationsByCustomerId(int customerId);
 }

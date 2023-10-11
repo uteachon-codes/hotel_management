@@ -19,4 +19,7 @@ import java.util.List;
 public interface CustomerRepository extends JpaRepository<Customer, Integer> {
 
     List<Customer> findByFirstNameAndLastName(String firstNameValue, String lastNameValue);
+
+
+    List<Customer> findByFirstNameContaining(String partialName);
 }

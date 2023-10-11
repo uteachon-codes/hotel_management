@@ -20,4 +20,6 @@ public interface CustomerService {
 
     public List<Customer> getCustomerByName(String firstName, String lastName);
     public Customer updateCustomer(int id, Customer customer);
+
+    public List<Customer> getCustomerByPartialFirstName(String partialName);
 }
