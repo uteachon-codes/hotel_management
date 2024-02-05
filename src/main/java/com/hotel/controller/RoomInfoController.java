@@ -15,43 +15,45 @@ import java.util.List;
 @RequestMapping("/room")
 public class RoomInfoController {
 
-    private RoomService roomService;
+    private final RoomService roomService;
 
     public RoomInfoController(RoomService roomService) {
-        super();
+        //We can remove the super class because it's not needed here.
         this.roomService = roomService;
     }
 
 //	createRoom() method/endpoint handles a POST request to create a Room by accepting a Room object in the request body,
 //	calling the createRoom method of roomService, 
 //	and returning the created Room object in the response with an HTTP status code of 200 (OK).
-    @RequestMapping(path = "/create", method = RequestMethod.POST)
+// Instead of @RequestMapping, we can use PostMapping
+    @PostMapping(path = "/create")
     public ResponseEntity<Room> createRoom(@Valid @RequestBody Room room) {
 
-            return new ResponseEntity<Room>(roomService.createRoom(room), HttpStatus.OK);
+            return new ResponseEntity<>(roomService.createRoom(room), HttpStatus.OK);
         }
 
     //	getRoomById() method/endpoint handles a GET request to get a Room by its id using Service layer
-    @RequestMapping(path = "/get/{id}", method = RequestMethod.GET)
+    // Instead of RequestMapping, we can use GetMapping
+    @GetMapping(path = "/get/{id}")
     public ResponseEntity<Room> getRoomById(@Valid @PathVariable int id) {
-            return new ResponseEntity<Room>(roomService.getRoombyId(id), HttpStatus.OK);
+            return new ResponseEntity<>(roomService.getRoombyId(id), HttpStatus.OK);
 
     }
 
     //	getAllRooms() method/endpoint handles a GET request to get All the rooms using methods in servcie layer
-    @RequestMapping(path = "/get", method = RequestMethod.GET)
+    @GetMapping("/get")
     public ResponseEntity<List<Room>> getAllRooms() {
-        List<Room> roomList = roomService.getAllRoom();
-        return new ResponseEntity<>(roomList,HttpStatus.OK);
+        List<Room> roomList = roomService.getAllRooms();
+        return new ResponseEntity<>(roomList, HttpStatus.OK);
     }
 
     // updateRoom() method handles the patch request and is used to update the room
     // details using the service method updateRoom
+    // Here, we can use PatchMapping instead of RequestMapping to match our request.
 
-
-    @RequestMapping(path = "/update/{id}", method = RequestMethod.PATCH)
+    @PatchMapping("/update/{id}")
     public ResponseEntity<Room> updateRoom(@PathVariable int id,@RequestBody Room room) {
 
-            return new ResponseEntity<Room>(roomService.updateRoomByFields(id, room), HttpStatus.OK);
+            return new ResponseEntity<>(roomService.updateRoomByFields(id, room), HttpStatus.OK);
     }
 }
