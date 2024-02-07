@@ -1,5 +1,7 @@
 # hotel_management module
+
 ## Softwares to be used:
+
 - Java (1.8 or higher)
 - Springboot (most latest)
 - Maven

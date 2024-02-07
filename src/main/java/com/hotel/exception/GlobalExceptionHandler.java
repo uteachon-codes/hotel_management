@@ -74,10 +74,10 @@ public class GlobalExceptionHandler {
 
     @ResponseStatus(HttpStatus.BAD_REQUEST)
     @ExceptionHandler(EntityNotFoundException.class)
-    public Map<String, Integer> customerNotFoundException(EntityNotFoundException ex){
+    public Map<String, Integer> customerNotFoundException(EntityNotFoundException ex) {
 
         Map<String, Integer> error = new HashMap<>();
-        error.put(ex.getMessage(),ex.getEntityId());
+        error.put(ex.getMessage(), ex.getEntityId());
         return error;
     }
 

@@ -68,14 +68,14 @@ public class CustomerInfoController {
         return new ResponseEntity<Customer>(customerService.updateCustomer(id, customer), HttpStatus.OK);
     }
 
-    @RequestMapping(path="/getFirst/{partialFirstName}",method = RequestMethod.GET)
-    public ResponseEntity<List<Customer>> getCustomerByPartialFirstName(@PathVariable String partialFirstName){
+    @RequestMapping(path = "/getFirst/{partialFirstName}", method = RequestMethod.GET)
+    public ResponseEntity<List<Customer>> getCustomerByPartialFirstName(@PathVariable String partialFirstName) {
         List<Customer> customerByName = customerService.getCustomerByPartialFirstName(partialFirstName);
         if (customerByName.isEmpty()) {
-            throw new EntityNotFoundException("Customer with given partial name "+ partialFirstName+" was not found ", 000);
+            throw new EntityNotFoundException("Customer with given partial name " + partialFirstName + " was not found ", 000);
         }
 
-        return new ResponseEntity<List<Customer>>(customerByName,HttpStatus.OK);
+        return new ResponseEntity<List<Customer>>(customerByName, HttpStatus.OK);
     }
 
 }

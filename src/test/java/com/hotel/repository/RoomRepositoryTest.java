@@ -12,19 +12,19 @@ import static org.assertj.core.api.Assertions.assertThat;
 @SpringBootTest
 class RoomRepositoryTest {
 
-	@Autowired
-	private RoomRepository roomRepository;
-	
-	@Test
-	void test() {
-		
-		
-		Optional<Room> optRoom = roomRepository.findById(1);
-		Room room = optRoom.get();
-		
-		int actualRoomId = room.getId();
-		
-		assertThat(actualRoomId).isEqualTo(1);
-	}
+    @Autowired
+    private RoomRepository roomRepository;
+
+    @Test
+    void test() {
+
+
+        Optional<Room> optRoom = roomRepository.findById(1);
+        Room room = optRoom.get();
+
+        int actualRoomId = room.getId();
+
+        assertThat(actualRoomId).isEqualTo(1);
+    }
 
 }

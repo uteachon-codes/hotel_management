@@ -30,26 +30,26 @@ public class Customer {
     private int id;
 
     @NotBlank(message = "First Name cannot be left blank")
-    @Column(name="first_name")
+    @Column(name = "first_name")
     private String firstName;
 
     @NotBlank(message = "Last Name cannot be left blank")
-    @Column(name="last_name")
+    @Column(name = "last_name")
     private String lastName;
 
     @Size(min = 10, max = 13, message = "Phone number should be between 10 t0 13 characters")
-    @Column(name="phone_number")
+    @Column(name = "phone_number")
     private String phoneNumber;
 
     @Email(message = "Accepted Email format is joe@xyz.com")
-    @Column(name="email_address")
+    @Column(name = "email_address")
     private String emailAddress;
 
     @NotBlank(message = "Street address cannot be left blank")
-    @Column(name="street_address")
+    @Column(name = "street_address")
     private String streetAddress;
 
-    @Column(name="additional_address_info")
+    @Column(name = "additional_address_info")
     private String additionalAddressInfo;
 
     @NotBlank(message = "City cannot be left blank")
@@ -63,7 +63,7 @@ public class Customer {
 
     private String country;
 
-    @Column(name="preferences",columnDefinition = "json")
+    @Column(name = "preferences", columnDefinition = "json")
     @Convert(converter = JsonMapConverter.class)
-    private Map<String,Object> preferences;
+    private Map<String, Object> preferences;
 }

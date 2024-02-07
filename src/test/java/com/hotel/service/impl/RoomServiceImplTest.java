@@ -19,66 +19,66 @@ import static org.mockito.Mockito.when;
 @ExtendWith(MockitoExtension.class)
 class RoomServiceImplTest {
 
-	@Mock
-	private RoomRepository roomRepository;
+    @Mock
+    private RoomRepository roomRepository;
 
-	@InjectMocks
-	private RoomServiceImpl roomService;
+    @InjectMocks
+    private RoomServiceImpl roomService;
 
-	@Test
-	void getAllRoom() {
-		roomService.getAllRoom();
-		verify(roomRepository).findAll();
-	}
+    @Test
+    void getAllRoom() {
+        roomService.getAllRoom();
+        verify(roomRepository).findAll();
+    }
 
-	@Test
-	void getRoombyId() throws BusinessException, SystemException {
+    @Test
+    void getRoombyId() throws BusinessException, SystemException {
 
-		// Arrange
-		int roomId = 1;
+        // Arrange
+        int roomId = 1;
 
-		// Create a dummy room object for testing
-		Room dummyRoom = new Room();
+        // Create a dummy room object for testing
+        Room dummyRoom = new Room();
 
-		Optional<Room> optionalRoom = Optional.of(dummyRoom);
+        Optional<Room> optionalRoom = Optional.of(dummyRoom);
 
-		// Define the behavior of the mock object
-		when(roomRepository.findById(roomId)).thenReturn(optionalRoom);
+        // Define the behavior of the mock object
+        when(roomRepository.findById(roomId)).thenReturn(optionalRoom);
 
-		// Act
-		roomService.getRoombyId(1);
+        // Act
+        roomService.getRoombyId(1);
 
-		// Assert
-		// Verify that the findById() method of the mock object is called with the
-		// expected room ID
-		verify(roomRepository).findById(1);
-	}
+        // Assert
+        // Verify that the findById() method of the mock object is called with the
+        // expected room ID
+        verify(roomRepository).findById(1);
+    }
 
-	@Test
-	void createRoom() {
+    @Test
+    void createRoom() {
 
-		Room room = new Room();
+        Room room = new Room();
 
-		LocalDate currentDate = LocalDate.of(2023, 6, 30);
-		java.sql.Date sqlDate = java.sql.Date.valueOf(currentDate);
+        LocalDate currentDate = LocalDate.of(2023, 6, 30);
+        java.sql.Date sqlDate = java.sql.Date.valueOf(currentDate);
 
-		room.setCreateDate(sqlDate);
-		room.setId(1);
+        room.setCreateDate(sqlDate);
+        room.setId(1);
 
-		// Mock the save() method of the roomRepository
-		when(roomRepository.save(room)).thenReturn(room);
+        // Mock the save() method of the roomRepository
+        when(roomRepository.save(room)).thenReturn(room);
 
-		// Act
-		Room createRoom = roomService.createRoom(room);
+        // Act
+        Room createRoom = roomService.createRoom(room);
 
-		// Assert
-		assertEquals(1, createRoom.getId());
-		verify(roomRepository).save(room);
-	}
+        // Assert
+        assertEquals(1, createRoom.getId());
+        verify(roomRepository).save(room);
+    }
 
-	@Test
-	void updateRoom() {
-	      // Create a sample room object to use in the test
+    @Test
+    void updateRoom() {
+        // Create a sample room object to use in the test
         Room newRoom = new Room();
         newRoom.setAmenities("TV, WiFi");
         newRoom.setMaxOccupancy(2);
@@ -118,5 +118,5 @@ class RoomServiceImplTest {
         // Verify that the returned room is the same as the updated room
         assertEquals(oldRoom, updatedRoom);
 
-	}
+    }
 }

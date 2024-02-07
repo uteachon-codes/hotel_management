@@ -1,11 +1,14 @@
 package com.hotel.service.impl;
 
+import com.hotel.controller.ReservationInfoController;
 import com.hotel.exception.EntityNotFoundException;
 import com.hotel.model.Customer;
 import com.hotel.model.Reservation;
 import com.hotel.repository.ReservationRepository;
 import com.hotel.service.CustomerService;
 import com.hotel.service.ReservationService;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -22,12 +25,19 @@ public class ReservationServiceImpl implements ReservationService {
     @Autowired
     private CustomerService customerService;
 
+    private static final Logger logger = LogManager.getLogger(ReservationServiceImpl.class);
     @Override
     public Reservation createReservation(Reservation reservation) {
-
-        Date currentDate = new Date();
-        reservation.setReservationDate(currentDate);
-        return reservationRepository.save(reservation);
+        try {
+            Date currentDate = new Date();
+            reservation.setReservationDate(currentDate);
+            Reservation savedReservation = reservationRepository.save(reservation);
+            logger.info("Saved Reservation with ID : "+savedReservation.getId());
+            return savedReservation;
+        }catch(Exception e){
+            logger.error("Issue in saving the reservation ",e);
+            throw e;
+        }
     }
 
     @Override
@@ -71,7 +81,7 @@ public class ReservationServiceImpl implements ReservationService {
                 // reservationRepository.findByCustomerId is a method used for finding the reservations given the customer
 
                 List<Reservation> reservationByCustomerId = reservationRepository.findByCustomerId(customerId);
-               // Here we are checking if there is any reservations made the returned customer. if there is a single reservation made by the  customer. We will make this flag true otherwise it will remain false
+                // Here we are checking if there is any reservations made the returned customer. if there is a single reservation made by the  customer. We will make this flag true otherwise it will remain false
                 if (!reservationByCustomerId.isEmpty()) {
                     anyReservationAvailable = true;
                 }
