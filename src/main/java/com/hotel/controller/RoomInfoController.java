@@ -43,7 +43,7 @@ public class RoomInfoController {
     //	getAllRooms() method/endpoint handles a GET request to get All the rooms using methods in servcie layer
     @GetMapping("/get")
     public ResponseEntity<List<Room>> getAllRooms() {
-        List<Room> roomList = roomService.getAllRooms();
+        List<Room> roomList = roomService.getAllRoom();
         return new ResponseEntity<>(roomList, HttpStatus.OK);
     }
 
