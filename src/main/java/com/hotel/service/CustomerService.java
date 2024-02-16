@@ -19,5 +19,8 @@ public interface CustomerService {
     public Customer getCustomerById(int id);
 
     public List<Customer> getCustomerByName(String firstName, String lastName);
+
     public Customer updateCustomer(int id, Customer customer);
+
+    public List<Customer> getCustomerByPartialFirstName(String partialName);
 }

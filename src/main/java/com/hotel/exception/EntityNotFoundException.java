@@ -2,26 +2,27 @@ package com.hotel.exception;
 
 
 /**
- * CustomerNotFoundException is a custom exception class that extends RuntimeException.
+ * EntityNotFoundException is a custom exception class that extends RuntimeException.
  * It is used to indicate that a customer with a specified ID was not found in the system.
  * This exception is typically thrown when attempting to retrieve or manipulate customer data.
  *
  * @author Abdul Basith
  */
-public class CustomerNotFoundException extends RuntimeException{
+public class EntityNotFoundException extends RuntimeException {
 
     private String message;
-    private int customerId;
-    public CustomerNotFoundException(String message,int customerId){
+    private int entityId;
+
+    public EntityNotFoundException(String message, int entityId) {
         this.message = message;
-        this.customerId = customerId;
+        this.entityId = entityId;
     }
 
     @Override
     public String toString() {
-        final StringBuilder sb = new StringBuilder("CustomerNotFoundException{");
+        final StringBuilder sb = new StringBuilder("EntityNotFoundException{");
         sb.append("message='").append(message).append('\'');
-        sb.append(", customerId='").append(customerId).append('\'');
+        sb.append(", entityId=").append(entityId);
         sb.append('}');
         return sb.toString();
     }
@@ -35,11 +36,11 @@ public class CustomerNotFoundException extends RuntimeException{
         this.message = message;
     }
 
-    public int getCustomerId() {
-        return customerId;
+    public int getEntityId() {
+        return entityId;
     }
 
-    public void setCustomerId(int customerId) {
-        this.customerId = customerId;
+    public void setEntityId(int entityId) {
+        this.entityId = entityId;
     }
 }

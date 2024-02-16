@@ -34,9 +34,13 @@ target/
 
 # Eclipse files
 .settings/
-.classpath
-.project
 
 # Operating System-specific files
 .DS_Store
 Thumbs.db
+
+# vscode file
+.vscode/
+
+# Log files
+app.log

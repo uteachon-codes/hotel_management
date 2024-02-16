@@ -1,0 +1,305 @@
+18-10-2023-INFO-org.apache.juli.logging.DirectJDKLog-log-173-Initializing Spring DispatcherServlet 'dispatcherServlet'
+18-10-2023-INFO-org.springframework.web.servlet.FrameworkServlet-initServletBean-532-Initializing Servlet 'dispatcherServlet'
+18-10-2023-INFO-org.springframework.web.servlet.FrameworkServlet-initServletBean-554-Completed initialization in 3 ms
+19-10-2023-WARN-com.zaxxer.hikari.pool.HikariPool$HouseKeeper-run-804-HikariPool-9 - Thread starvation or clock leap detected (housekeeper delta=3h32m42s453ms635µs200ns).
+19-10-2023-WARN-com.zaxxer.hikari.pool.HikariPool$HouseKeeper-run-804-HikariPool-9 - Thread starvation or clock leap detected (housekeeper delta=1m33s573ms237µs800ns).
+19-10-2023-INFO-org.springframework.orm.jpa.AbstractEntityManagerFactoryBean-destroy-650-Closing JPA EntityManagerFactory for persistence unit 'default'
+19-10-2023-INFO-com.zaxxer.hikari.HikariDataSource-close-350-HikariPool-9 - Shutdown initiated...
+19-10-2023-INFO-com.zaxxer.hikari.HikariDataSource-close-352-HikariPool-9 - Shutdown completed.
+15-02-2024-INFO-org.hibernate.validator.internal.util.Version-<clinit>-21-HV000001: Hibernate Validator 8.0.0.Final
+15-02-2024-INFO-org.springframework.boot.StartupInfoLogger-logStarting-51-Starting HotelManagementApplication using Java 17.0.10 with PID 22013 (/Users/abdulbasithmohammed/Documents/sts-projects/hotel_management/target/classes started by abdulbasithmohammed in /Users/abdulbasithmohammed/Documents/sts-projects/hotel_management)
+15-02-2024-DEBUG-org.springframework.boot.StartupInfoLogger-logStarting-52-Running with Spring Boot v3.1.0, Spring v6.0.9
+15-02-2024-INFO-org.springframework.boot.SpringApplication-logStartupProfileInfo-639-The following 1 profile is active: "dev"
+15-02-2024-INFO-org.springframework.data.repository.config.RepositoryConfigurationDelegate-registerRepositoriesIn-138-Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+15-02-2024-INFO-org.springframework.data.repository.config.RepositoryConfigurationDelegate-registerRepositoriesIn-208-Finished Spring Data repository scanning in 19 ms. Found 3 JPA repository interfaces.
+15-02-2024-INFO-org.apache.juli.logging.DirectJDKLog-log-173-Initializing ProtocolHandler ["http-nio-8080"]
+15-02-2024-INFO-org.apache.juli.logging.DirectJDKLog-log-173-Starting service [Tomcat]
+15-02-2024-INFO-org.apache.juli.logging.DirectJDKLog-log-173-Starting Servlet engine: [Apache Tomcat/10.1.8]
+15-02-2024-INFO-org.apache.juli.logging.DirectJDKLog-log-173-Initializing Spring embedded WebApplicationContext
+15-02-2024-INFO-org.hibernate.jpa.internal.util.LogHelper-logPersistenceUnitInformation-31-HHH000204: Processing PersistenceUnitInfo [name: default]
+15-02-2024-INFO-org.hibernate.Version-logVersion-44-HHH000412: Hibernate ORM core version 6.2.2.Final
+15-02-2024-INFO-org.hibernate.cfg.Environment-<clinit>-191-HHH000406: Using bytecode reflection optimizer
+15-02-2024-INFO-org.hibernate.bytecode.internal.BytecodeProviderInitiator-buildBytecodeProvider-53-HHH000021: Bytecode provider name : bytebuddy
+15-02-2024-INFO-org.springframework.orm.jpa.persistenceunit.SpringPersistenceUnitInfo-addTransformer-87-No LoadTimeWeaver setup: ignoring JPA class transformer
+15-02-2024-INFO-com.zaxxer.hikari.HikariDataSource-getConnection-110-HikariPool-1 - Starting...
+15-02-2024-ERROR-com.zaxxer.hikari.pool.HikariPool-throwPoolInitializationException-594-HikariPool-1 - Exception during pool initialization.
+java.sql.SQLException: Access denied for user 'root'@'localhost' (using password: YES)
+	at com.mysql.cj.jdbc.exceptions.SQLError.createSQLException(SQLError.java:130) ~[mysql-connector-j-8.0.33.jar:8.0.33]
+	at com.mysql.cj.jdbc.exceptions.SQLExceptionsMapping.translateException(SQLExceptionsMapping.java:122) ~[mysql-connector-j-8.0.33.jar:8.0.33]
+	at com.mysql.cj.jdbc.ConnectionImpl.createNewIO(ConnectionImpl.java:825) ~[mysql-connector-j-8.0.33.jar:8.0.33]
+	at com.mysql.cj.jdbc.ConnectionImpl.<init>(ConnectionImpl.java:446) ~[mysql-connector-j-8.0.33.jar:8.0.33]
+	at com.mysql.cj.jdbc.ConnectionImpl.getInstance(ConnectionImpl.java:239) ~[mysql-connector-j-8.0.33.jar:8.0.33]
+	at com.mysql.cj.jdbc.NonRegisteringDriver.connect(NonRegisteringDriver.java:188) ~[mysql-connector-j-8.0.33.jar:8.0.33]
+	at com.zaxxer.hikari.util.DriverDataSource.getConnection(DriverDataSource.java:138) ~[HikariCP-5.0.1.jar:?]
+	at com.zaxxer.hikari.pool.PoolBase.newConnection(PoolBase.java:359) ~[HikariCP-5.0.1.jar:?]
+	at com.zaxxer.hikari.pool.PoolBase.newPoolEntry(PoolBase.java:201) ~[HikariCP-5.0.1.jar:?]
+	at com.zaxxer.hikari.pool.HikariPool.createPoolEntry(HikariPool.java:470) ~[HikariCP-5.0.1.jar:?]
+	at com.zaxxer.hikari.pool.HikariPool.checkFailFast(HikariPool.java:561) ~[HikariCP-5.0.1.jar:?]
+	at com.zaxxer.hikari.pool.HikariPool.<init>(HikariPool.java:100) ~[HikariCP-5.0.1.jar:?]
+	at com.zaxxer.hikari.HikariDataSource.getConnection(HikariDataSource.java:112) ~[HikariCP-5.0.1.jar:?]
+	at org.hibernate.engine.jdbc.connections.internal.DatasourceConnectionProviderImpl.getConnection(DatasourceConnectionProviderImpl.java:122) ~[hibernate-core-6.2.2.Final.jar:6.2.2.Final]
+	at org.hibernate.engine.jdbc.env.internal.JdbcEnvironmentInitiator$ConnectionProviderJdbcConnectionAccess.obtainConnection(JdbcEnvironmentInitiator.java:316) ~[hibernate-core-6.2.2.Final.jar:6.2.2.Final]
+	at org.hibernate.engine.jdbc.env.internal.JdbcEnvironmentInitiator.initiateService(JdbcEnvironmentInitiator.java:152) ~[hibernate-core-6.2.2.Final.jar:6.2.2.Final]
+	at org.hibernate.engine.jdbc.env.internal.JdbcEnvironmentInitiator.initiateService(JdbcEnvironmentInitiator.java:34) ~[hibernate-core-6.2.2.Final.jar:6.2.2.Final]
+	at org.hibernate.boot.registry.internal.StandardServiceRegistryImpl.initiateService(StandardServiceRegistryImpl.java:119) ~[hibernate-core-6.2.2.Final.jar:6.2.2.Final]
+	at org.hibernate.service.internal.AbstractServiceRegistryImpl.createService(AbstractServiceRegistryImpl.java:264) ~[hibernate-core-6.2.2.Final.jar:6.2.2.Final]
+	at org.hibernate.service.internal.AbstractServiceRegistryImpl.initializeService(AbstractServiceRegistryImpl.java:239) ~[hibernate-core-6.2.2.Final.jar:6.2.2.Final]
+	at org.hibernate.service.internal.AbstractServiceRegistryImpl.getService(AbstractServiceRegistryImpl.java:216) ~[hibernate-core-6.2.2.Final.jar:6.2.2.Final]
+	at org.hibernate.boot.model.relational.Database.<init>(Database.java:45) ~[hibernate-core-6.2.2.Final.jar:6.2.2.Final]
+	at org.hibernate.boot.internal.InFlightMetadataCollectorImpl.getDatabase(InFlightMetadataCollectorImpl.java:229) ~[hibernate-core-6.2.2.Final.jar:6.2.2.Final]
+	at org.hibernate.boot.internal.InFlightMetadataCollectorImpl.<init>(InFlightMetadataCollectorImpl.java:197) ~[hibernate-core-6.2.2.Final.jar:6.2.2.Final]
+	at org.hibernate.boot.model.process.spi.MetadataBuildingProcess.complete(MetadataBuildingProcess.java:166) ~[hibernate-core-6.2.2.Final.jar:6.2.2.Final]
+	at org.hibernate.jpa.boot.internal.EntityManagerFactoryBuilderImpl.metadata(EntityManagerFactoryBuilderImpl.java:1380) ~[hibernate-core-6.2.2.Final.jar:6.2.2.Final]
+	at org.hibernate.jpa.boot.internal.EntityManagerFactoryBuilderImpl.build(EntityManagerFactoryBuilderImpl.java:1451) ~[hibernate-core-6.2.2.Final.jar:6.2.2.Final]
+	at org.springframework.orm.jpa.vendor.SpringHibernateJpaPersistenceProvider.createContainerEntityManagerFactory(SpringHibernateJpaPersistenceProvider.java:66) ~[spring-orm-6.0.9.jar:6.0.9]
+	at org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean.createNativeEntityManagerFactory(LocalContainerEntityManagerFactoryBean.java:376) ~[spring-orm-6.0.9.jar:6.0.9]
+	at org.springframework.orm.jpa.AbstractEntityManagerFactoryBean.buildNativeEntityManagerFactory(AbstractEntityManagerFactoryBean.java:409) ~[spring-orm-6.0.9.jar:6.0.9]
+	at org.springframework.orm.jpa.AbstractEntityManagerFactoryBean.afterPropertiesSet(AbstractEntityManagerFactoryBean.java:396) ~[spring-orm-6.0.9.jar:6.0.9]
+	at org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean.afterPropertiesSet(LocalContainerEntityManagerFactoryBean.java:352) ~[spring-orm-6.0.9.jar:6.0.9]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.invokeInitMethods(AbstractAutowireCapableBeanFactory.java:1816) ~[spring-beans-6.0.9.jar:6.0.9]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.initializeBean(AbstractAutowireCapableBeanFactory.java:1766) ~[spring-beans-6.0.9.jar:6.0.9]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:598) ~[spring-beans-6.0.9.jar:6.0.9]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:520) ~[spring-beans-6.0.9.jar:6.0.9]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:326) ~[spring-beans-6.0.9.jar:6.0.9]
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:234) [spring-beans-6.0.9.jar:6.0.9]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:324) [spring-beans-6.0.9.jar:6.0.9]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:200) [spring-beans-6.0.9.jar:6.0.9]
+	at org.springframework.context.support.AbstractApplicationContext.getBean(AbstractApplicationContext.java:1156) [spring-context-6.0.9.jar:6.0.9]
+	at org.springframework.context.support.AbstractApplicationContext.finishBeanFactoryInitialization(AbstractApplicationContext.java:931) [spring-context-6.0.9.jar:6.0.9]
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:608) [spring-context-6.0.9.jar:6.0.9]
+	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.refresh(ServletWebServerApplicationContext.java:146) [spring-boot-3.1.0.jar:3.1.0]
+	at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:733) [spring-boot-3.1.0.jar:3.1.0]
+	at org.springframework.boot.SpringApplication.refreshContext(SpringApplication.java:435) [spring-boot-3.1.0.jar:3.1.0]
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:311) [spring-boot-3.1.0.jar:3.1.0]
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1305) [spring-boot-3.1.0.jar:3.1.0]
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1294) [spring-boot-3.1.0.jar:3.1.0]
+	at com.hotel.HotelManagementApplication.main(HotelManagementApplication.java:14) [classes/:?]
+	at jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method) ~[?:?]
+	at jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77) ~[?:?]
+	at jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43) ~[?:?]
+	at java.lang.reflect.Method.invoke(Method.java:568) ~[?:?]
+	at org.springframework.boot.devtools.restart.RestartLauncher.run(RestartLauncher.java:49) [spring-boot-devtools-3.1.0.jar:3.1.0]
+15-02-2024-WARN-org.hibernate.engine.jdbc.env.internal.JdbcEnvironmentInitiator-initiateService-244-HHH000342: Could not obtain connection to query metadata
+java.sql.SQLException: Access denied for user 'root'@'localhost' (using password: YES)
+	at com.mysql.cj.jdbc.exceptions.SQLError.createSQLException(SQLError.java:130) ~[mysql-connector-j-8.0.33.jar:8.0.33]
+	at com.mysql.cj.jdbc.exceptions.SQLExceptionsMapping.translateException(SQLExceptionsMapping.java:122) ~[mysql-connector-j-8.0.33.jar:8.0.33]
+	at com.mysql.cj.jdbc.ConnectionImpl.createNewIO(ConnectionImpl.java:825) ~[mysql-connector-j-8.0.33.jar:8.0.33]
+	at com.mysql.cj.jdbc.ConnectionImpl.<init>(ConnectionImpl.java:446) ~[mysql-connector-j-8.0.33.jar:8.0.33]
+	at com.mysql.cj.jdbc.ConnectionImpl.getInstance(ConnectionImpl.java:239) ~[mysql-connector-j-8.0.33.jar:8.0.33]
+	at com.mysql.cj.jdbc.NonRegisteringDriver.connect(NonRegisteringDriver.java:188) ~[mysql-connector-j-8.0.33.jar:8.0.33]
+	at com.zaxxer.hikari.util.DriverDataSource.getConnection(DriverDataSource.java:138) ~[HikariCP-5.0.1.jar:?]
+	at com.zaxxer.hikari.pool.PoolBase.newConnection(PoolBase.java:359) ~[HikariCP-5.0.1.jar:?]
+	at com.zaxxer.hikari.pool.PoolBase.newPoolEntry(PoolBase.java:201) ~[HikariCP-5.0.1.jar:?]
+	at com.zaxxer.hikari.pool.HikariPool.createPoolEntry(HikariPool.java:470) ~[HikariCP-5.0.1.jar:?]
+	at com.zaxxer.hikari.pool.HikariPool.checkFailFast(HikariPool.java:561) ~[HikariCP-5.0.1.jar:?]
+	at com.zaxxer.hikari.pool.HikariPool.<init>(HikariPool.java:100) ~[HikariCP-5.0.1.jar:?]
+	at com.zaxxer.hikari.HikariDataSource.getConnection(HikariDataSource.java:112) ~[HikariCP-5.0.1.jar:?]
+	at org.hibernate.engine.jdbc.connections.internal.DatasourceConnectionProviderImpl.getConnection(DatasourceConnectionProviderImpl.java:122) ~[hibernate-core-6.2.2.Final.jar:6.2.2.Final]
+	at org.hibernate.engine.jdbc.env.internal.JdbcEnvironmentInitiator$ConnectionProviderJdbcConnectionAccess.obtainConnection(JdbcEnvironmentInitiator.java:316) ~[hibernate-core-6.2.2.Final.jar:6.2.2.Final]
+	at org.hibernate.engine.jdbc.env.internal.JdbcEnvironmentInitiator.initiateService(JdbcEnvironmentInitiator.java:152) ~[hibernate-core-6.2.2.Final.jar:6.2.2.Final]
+	at org.hibernate.engine.jdbc.env.internal.JdbcEnvironmentInitiator.initiateService(JdbcEnvironmentInitiator.java:34) ~[hibernate-core-6.2.2.Final.jar:6.2.2.Final]
+	at org.hibernate.boot.registry.internal.StandardServiceRegistryImpl.initiateService(StandardServiceRegistryImpl.java:119) ~[hibernate-core-6.2.2.Final.jar:6.2.2.Final]
+	at org.hibernate.service.internal.AbstractServiceRegistryImpl.createService(AbstractServiceRegistryImpl.java:264) ~[hibernate-core-6.2.2.Final.jar:6.2.2.Final]
+	at org.hibernate.service.internal.AbstractServiceRegistryImpl.initializeService(AbstractServiceRegistryImpl.java:239) ~[hibernate-core-6.2.2.Final.jar:6.2.2.Final]
+	at org.hibernate.service.internal.AbstractServiceRegistryImpl.getService(AbstractServiceRegistryImpl.java:216) ~[hibernate-core-6.2.2.Final.jar:6.2.2.Final]
+	at org.hibernate.boot.model.relational.Database.<init>(Database.java:45) ~[hibernate-core-6.2.2.Final.jar:6.2.2.Final]
+	at org.hibernate.boot.internal.InFlightMetadataCollectorImpl.getDatabase(InFlightMetadataCollectorImpl.java:229) ~[hibernate-core-6.2.2.Final.jar:6.2.2.Final]
+	at org.hibernate.boot.internal.InFlightMetadataCollectorImpl.<init>(InFlightMetadataCollectorImpl.java:197) ~[hibernate-core-6.2.2.Final.jar:6.2.2.Final]
+	at org.hibernate.boot.model.process.spi.MetadataBuildingProcess.complete(MetadataBuildingProcess.java:166) ~[hibernate-core-6.2.2.Final.jar:6.2.2.Final]
+	at org.hibernate.jpa.boot.internal.EntityManagerFactoryBuilderImpl.metadata(EntityManagerFactoryBuilderImpl.java:1380) ~[hibernate-core-6.2.2.Final.jar:6.2.2.Final]
+	at org.hibernate.jpa.boot.internal.EntityManagerFactoryBuilderImpl.build(EntityManagerFactoryBuilderImpl.java:1451) ~[hibernate-core-6.2.2.Final.jar:6.2.2.Final]
+	at org.springframework.orm.jpa.vendor.SpringHibernateJpaPersistenceProvider.createContainerEntityManagerFactory(SpringHibernateJpaPersistenceProvider.java:66) ~[spring-orm-6.0.9.jar:6.0.9]
+	at org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean.createNativeEntityManagerFactory(LocalContainerEntityManagerFactoryBean.java:376) ~[spring-orm-6.0.9.jar:6.0.9]
+	at org.springframework.orm.jpa.AbstractEntityManagerFactoryBean.buildNativeEntityManagerFactory(AbstractEntityManagerFactoryBean.java:409) ~[spring-orm-6.0.9.jar:6.0.9]
+	at org.springframework.orm.jpa.AbstractEntityManagerFactoryBean.afterPropertiesSet(AbstractEntityManagerFactoryBean.java:396) ~[spring-orm-6.0.9.jar:6.0.9]
+	at org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean.afterPropertiesSet(LocalContainerEntityManagerFactoryBean.java:352) ~[spring-orm-6.0.9.jar:6.0.9]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.invokeInitMethods(AbstractAutowireCapableBeanFactory.java:1816) ~[spring-beans-6.0.9.jar:6.0.9]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.initializeBean(AbstractAutowireCapableBeanFactory.java:1766) ~[spring-beans-6.0.9.jar:6.0.9]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:598) ~[spring-beans-6.0.9.jar:6.0.9]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:520) ~[spring-beans-6.0.9.jar:6.0.9]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:326) ~[spring-beans-6.0.9.jar:6.0.9]
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:234) [spring-beans-6.0.9.jar:6.0.9]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:324) [spring-beans-6.0.9.jar:6.0.9]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:200) [spring-beans-6.0.9.jar:6.0.9]
+	at org.springframework.context.support.AbstractApplicationContext.getBean(AbstractApplicationContext.java:1156) [spring-context-6.0.9.jar:6.0.9]
+	at org.springframework.context.support.AbstractApplicationContext.finishBeanFactoryInitialization(AbstractApplicationContext.java:931) [spring-context-6.0.9.jar:6.0.9]
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:608) [spring-context-6.0.9.jar:6.0.9]
+	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.refresh(ServletWebServerApplicationContext.java:146) [spring-boot-3.1.0.jar:3.1.0]
+	at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:733) [spring-boot-3.1.0.jar:3.1.0]
+	at org.springframework.boot.SpringApplication.refreshContext(SpringApplication.java:435) [spring-boot-3.1.0.jar:3.1.0]
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:311) [spring-boot-3.1.0.jar:3.1.0]
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1305) [spring-boot-3.1.0.jar:3.1.0]
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1294) [spring-boot-3.1.0.jar:3.1.0]
+	at com.hotel.HotelManagementApplication.main(HotelManagementApplication.java:14) [classes/:?]
+	at jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method) ~[?:?]
+	at jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77) ~[?:?]
+	at jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43) ~[?:?]
+	at java.lang.reflect.Method.invoke(Method.java:568) ~[?:?]
+	at org.springframework.boot.devtools.restart.RestartLauncher.run(RestartLauncher.java:49) [spring-boot-devtools-3.1.0.jar:3.1.0]
+15-02-2024-INFO-org.hibernate.engine.jdbc.dialect.internal.DialectFactoryImpl-logSelectedDialect-93-HHH035001: Using dialect: org.hibernate.dialect.MySQL8Dialect, version: 8.0
+15-02-2024-WARN-org.hibernate.engine.jdbc.dialect.internal.DialectFactoryImpl-logSelectedDialect-100-HHH90000026: MySQL8Dialect has been deprecated; use org.hibernate.dialect.MySQLDialect instead
+15-02-2024-INFO-org.hibernate.bytecode.internal.BytecodeProviderInitiator-buildBytecodeProvider-53-HHH000021: Bytecode provider name : bytebuddy
+15-02-2024-INFO-org.hibernate.engine.transaction.jta.platform.internal.JtaPlatformInitiator-initiateService-51-HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+15-02-2024-INFO-com.zaxxer.hikari.HikariDataSource-getConnection-110-HikariPool-1 - Starting...
+15-02-2024-ERROR-com.zaxxer.hikari.pool.HikariPool-throwPoolInitializationException-594-HikariPool-1 - Exception during pool initialization.
+java.sql.SQLException: Access denied for user 'root'@'localhost' (using password: YES)
+	at com.mysql.cj.jdbc.exceptions.SQLError.createSQLException(SQLError.java:130) ~[mysql-connector-j-8.0.33.jar:8.0.33]
+	at com.mysql.cj.jdbc.exceptions.SQLExceptionsMapping.translateException(SQLExceptionsMapping.java:122) ~[mysql-connector-j-8.0.33.jar:8.0.33]
+	at com.mysql.cj.jdbc.ConnectionImpl.createNewIO(ConnectionImpl.java:825) ~[mysql-connector-j-8.0.33.jar:8.0.33]
+	at com.mysql.cj.jdbc.ConnectionImpl.<init>(ConnectionImpl.java:446) ~[mysql-connector-j-8.0.33.jar:8.0.33]
+	at com.mysql.cj.jdbc.ConnectionImpl.getInstance(ConnectionImpl.java:239) ~[mysql-connector-j-8.0.33.jar:8.0.33]
+	at com.mysql.cj.jdbc.NonRegisteringDriver.connect(NonRegisteringDriver.java:188) ~[mysql-connector-j-8.0.33.jar:8.0.33]
+	at com.zaxxer.hikari.util.DriverDataSource.getConnection(DriverDataSource.java:138) ~[HikariCP-5.0.1.jar:?]
+	at com.zaxxer.hikari.pool.PoolBase.newConnection(PoolBase.java:359) ~[HikariCP-5.0.1.jar:?]
+	at com.zaxxer.hikari.pool.PoolBase.newPoolEntry(PoolBase.java:201) ~[HikariCP-5.0.1.jar:?]
+	at com.zaxxer.hikari.pool.HikariPool.createPoolEntry(HikariPool.java:470) ~[HikariCP-5.0.1.jar:?]
+	at com.zaxxer.hikari.pool.HikariPool.checkFailFast(HikariPool.java:561) ~[HikariCP-5.0.1.jar:?]
+	at com.zaxxer.hikari.pool.HikariPool.<init>(HikariPool.java:100) ~[HikariCP-5.0.1.jar:?]
+	at com.zaxxer.hikari.HikariDataSource.getConnection(HikariDataSource.java:112) ~[HikariCP-5.0.1.jar:?]
+	at org.hibernate.engine.jdbc.connections.internal.DatasourceConnectionProviderImpl.getConnection(DatasourceConnectionProviderImpl.java:122) ~[hibernate-core-6.2.2.Final.jar:6.2.2.Final]
+	at org.hibernate.engine.jdbc.env.internal.JdbcEnvironmentInitiator$ConnectionProviderJdbcConnectionAccess.obtainConnection(JdbcEnvironmentInitiator.java:316) ~[hibernate-core-6.2.2.Final.jar:6.2.2.Final]
+	at org.hibernate.resource.transaction.backend.jdbc.internal.DdlTransactionIsolatorNonJtaImpl.getIsolatedConnection(DdlTransactionIsolatorNonJtaImpl.java:46) ~[hibernate-core-6.2.2.Final.jar:6.2.2.Final]
+	at org.hibernate.resource.transaction.backend.jdbc.internal.DdlTransactionIsolatorNonJtaImpl.getIsolatedConnection(DdlTransactionIsolatorNonJtaImpl.java:39) ~[hibernate-core-6.2.2.Final.jar:6.2.2.Final]
+	at org.hibernate.tool.schema.internal.exec.ImprovedExtractionContextImpl.getJdbcConnection(ImprovedExtractionContextImpl.java:63) ~[hibernate-core-6.2.2.Final.jar:6.2.2.Final]
+	at org.hibernate.tool.schema.internal.exec.ImprovedExtractionContextImpl.getJdbcDatabaseMetaData(ImprovedExtractionContextImpl.java:70) ~[hibernate-core-6.2.2.Final.jar:6.2.2.Final]
+	at org.hibernate.tool.schema.extract.internal.InformationExtractorJdbcDatabaseMetaDataImpl.processTableResultSet(InformationExtractorJdbcDatabaseMetaDataImpl.java:64) ~[hibernate-core-6.2.2.Final.jar:6.2.2.Final]
+	at org.hibernate.tool.schema.extract.internal.AbstractInformationExtractorImpl.getTables(AbstractInformationExtractorImpl.java:564) ~[hibernate-core-6.2.2.Final.jar:6.2.2.Final]
+	at org.hibernate.tool.schema.extract.internal.DatabaseInformationImpl.getTablesInformation(DatabaseInformationImpl.java:122) ~[hibernate-core-6.2.2.Final.jar:6.2.2.Final]
+	at org.hibernate.tool.schema.internal.GroupedSchemaMigratorImpl.performTablesMigration(GroupedSchemaMigratorImpl.java:72) ~[hibernate-core-6.2.2.Final.jar:6.2.2.Final]
+	at org.hibernate.tool.schema.internal.AbstractSchemaMigrator.performMigration(AbstractSchemaMigrator.java:232) ~[hibernate-core-6.2.2.Final.jar:6.2.2.Final]
+	at org.hibernate.tool.schema.internal.AbstractSchemaMigrator.doMigration(AbstractSchemaMigrator.java:117) ~[hibernate-core-6.2.2.Final.jar:6.2.2.Final]
+	at org.hibernate.tool.schema.spi.SchemaManagementToolCoordinator.performDatabaseAction(SchemaManagementToolCoordinator.java:284) ~[hibernate-core-6.2.2.Final.jar:6.2.2.Final]
+	at org.hibernate.tool.schema.spi.SchemaManagementToolCoordinator.lambda$process$5(SchemaManagementToolCoordinator.java:143) ~[hibernate-core-6.2.2.Final.jar:6.2.2.Final]
+	at java.util.HashMap.forEach(HashMap.java:1421) ~[?:?]
+	at org.hibernate.tool.schema.spi.SchemaManagementToolCoordinator.process(SchemaManagementToolCoordinator.java:140) ~[hibernate-core-6.2.2.Final.jar:6.2.2.Final]
+	at org.hibernate.boot.internal.SessionFactoryObserverForSchemaExport.sessionFactoryCreated(SessionFactoryObserverForSchemaExport.java:37) ~[hibernate-core-6.2.2.Final.jar:6.2.2.Final]
+	at org.hibernate.internal.SessionFactoryObserverChain.sessionFactoryCreated(SessionFactoryObserverChain.java:35) ~[hibernate-core-6.2.2.Final.jar:6.2.2.Final]
+	at org.hibernate.internal.SessionFactoryImpl.<init>(SessionFactoryImpl.java:291) ~[hibernate-core-6.2.2.Final.jar:6.2.2.Final]
+	at org.hibernate.boot.internal.SessionFactoryBuilderImpl.build(SessionFactoryBuilderImpl.java:431) ~[hibernate-core-6.2.2.Final.jar:6.2.2.Final]
+	at org.hibernate.jpa.boot.internal.EntityManagerFactoryBuilderImpl.build(EntityManagerFactoryBuilderImpl.java:1455) ~[hibernate-core-6.2.2.Final.jar:6.2.2.Final]
+	at org.springframework.orm.jpa.vendor.SpringHibernateJpaPersistenceProvider.createContainerEntityManagerFactory(SpringHibernateJpaPersistenceProvider.java:66) ~[spring-orm-6.0.9.jar:6.0.9]
+	at org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean.createNativeEntityManagerFactory(LocalContainerEntityManagerFactoryBean.java:376) ~[spring-orm-6.0.9.jar:6.0.9]
+	at org.springframework.orm.jpa.AbstractEntityManagerFactoryBean.buildNativeEntityManagerFactory(AbstractEntityManagerFactoryBean.java:409) ~[spring-orm-6.0.9.jar:6.0.9]
+	at org.springframework.orm.jpa.AbstractEntityManagerFactoryBean.afterPropertiesSet(AbstractEntityManagerFactoryBean.java:396) ~[spring-orm-6.0.9.jar:6.0.9]
+	at org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean.afterPropertiesSet(LocalContainerEntityManagerFactoryBean.java:352) ~[spring-orm-6.0.9.jar:6.0.9]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.invokeInitMethods(AbstractAutowireCapableBeanFactory.java:1816) ~[spring-beans-6.0.9.jar:6.0.9]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.initializeBean(AbstractAutowireCapableBeanFactory.java:1766) ~[spring-beans-6.0.9.jar:6.0.9]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:598) ~[spring-beans-6.0.9.jar:6.0.9]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:520) ~[spring-beans-6.0.9.jar:6.0.9]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:326) ~[spring-beans-6.0.9.jar:6.0.9]
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:234) [spring-beans-6.0.9.jar:6.0.9]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:324) [spring-beans-6.0.9.jar:6.0.9]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:200) [spring-beans-6.0.9.jar:6.0.9]
+	at org.springframework.context.support.AbstractApplicationContext.getBean(AbstractApplicationContext.java:1156) [spring-context-6.0.9.jar:6.0.9]
+	at org.springframework.context.support.AbstractApplicationContext.finishBeanFactoryInitialization(AbstractApplicationContext.java:931) [spring-context-6.0.9.jar:6.0.9]
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:608) [spring-context-6.0.9.jar:6.0.9]
+	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.refresh(ServletWebServerApplicationContext.java:146) [spring-boot-3.1.0.jar:3.1.0]
+	at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:733) [spring-boot-3.1.0.jar:3.1.0]
+	at org.springframework.boot.SpringApplication.refreshContext(SpringApplication.java:435) [spring-boot-3.1.0.jar:3.1.0]
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:311) [spring-boot-3.1.0.jar:3.1.0]
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1305) [spring-boot-3.1.0.jar:3.1.0]
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1294) [spring-boot-3.1.0.jar:3.1.0]
+	at com.hotel.HotelManagementApplication.main(HotelManagementApplication.java:14) [classes/:?]
+	at jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method) ~[?:?]
+	at jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77) ~[?:?]
+	at jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43) ~[?:?]
+	at java.lang.reflect.Method.invoke(Method.java:568) ~[?:?]
+	at org.springframework.boot.devtools.restart.RestartLauncher.run(RestartLauncher.java:49) [spring-boot-devtools-3.1.0.jar:3.1.0]
+15-02-2024-WARN-org.hibernate.engine.jdbc.spi.SqlExceptionHelper-logExceptions-145-SQL Error: 1045, SQLState: 28000
+15-02-2024-ERROR-org.hibernate.engine.jdbc.spi.SqlExceptionHelper-logExceptions-150-Access denied for user 'root'@'localhost' (using password: YES)
+15-02-2024-ERROR-org.springframework.orm.jpa.AbstractEntityManagerFactoryBean-buildNativeEntityManagerFactory-426-Failed to initialize JPA EntityManagerFactory: [PersistenceUnit: default] Unable to build Hibernate SessionFactory; nested exception is org.hibernate.exception.GenericJDBCException: Unable to open JDBC Connection for DDL execution [Access denied for user 'root'@'localhost' (using password: YES)] [n/a]
+15-02-2024-INFO-org.apache.juli.logging.DirectJDKLog-log-173-Stopping service [Tomcat]
+15-02-2024-INFO-org.hibernate.validator.internal.util.Version-<clinit>-21-HV000001: Hibernate Validator 8.0.0.Final
+15-02-2024-INFO-org.springframework.boot.StartupInfoLogger-logStarting-51-Starting HotelManagementApplication using Java 17.0.10 with PID 22039 (/Users/abdulbasithmohammed/Documents/sts-projects/hotel_management/target/classes started by abdulbasithmohammed in /Users/abdulbasithmohammed/Documents/sts-projects/hotel_management)
+15-02-2024-DEBUG-org.springframework.boot.StartupInfoLogger-logStarting-52-Running with Spring Boot v3.1.0, Spring v6.0.9
+15-02-2024-INFO-org.springframework.boot.SpringApplication-logStartupProfileInfo-639-The following 1 profile is active: "dev"
+15-02-2024-INFO-org.springframework.data.repository.config.RepositoryConfigurationDelegate-registerRepositoriesIn-138-Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+15-02-2024-INFO-org.springframework.data.repository.config.RepositoryConfigurationDelegate-registerRepositoriesIn-208-Finished Spring Data repository scanning in 20 ms. Found 3 JPA repository interfaces.
+15-02-2024-INFO-org.apache.juli.logging.DirectJDKLog-log-173-Initializing ProtocolHandler ["http-nio-8080"]
+15-02-2024-INFO-org.apache.juli.logging.DirectJDKLog-log-173-Starting service [Tomcat]
+15-02-2024-INFO-org.apache.juli.logging.DirectJDKLog-log-173-Starting Servlet engine: [Apache Tomcat/10.1.8]
+15-02-2024-INFO-org.apache.juli.logging.DirectJDKLog-log-173-Initializing Spring embedded WebApplicationContext
+15-02-2024-INFO-org.hibernate.jpa.internal.util.LogHelper-logPersistenceUnitInformation-31-HHH000204: Processing PersistenceUnitInfo [name: default]
+15-02-2024-INFO-org.hibernate.Version-logVersion-44-HHH000412: Hibernate ORM core version 6.2.2.Final
+15-02-2024-INFO-org.hibernate.cfg.Environment-<clinit>-191-HHH000406: Using bytecode reflection optimizer
+15-02-2024-INFO-org.hibernate.bytecode.internal.BytecodeProviderInitiator-buildBytecodeProvider-53-HHH000021: Bytecode provider name : bytebuddy
+15-02-2024-INFO-org.springframework.orm.jpa.persistenceunit.SpringPersistenceUnitInfo-addTransformer-87-No LoadTimeWeaver setup: ignoring JPA class transformer
+15-02-2024-INFO-com.zaxxer.hikari.HikariDataSource-getConnection-110-HikariPool-1 - Starting...
+15-02-2024-INFO-com.zaxxer.hikari.pool.HikariPool-checkFailFast-565-HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@3b6dd5b
+15-02-2024-INFO-com.zaxxer.hikari.HikariDataSource-getConnection-123-HikariPool-1 - Start completed.
+15-02-2024-INFO-org.hibernate.engine.jdbc.dialect.internal.DialectFactoryImpl-logSelectedDialect-93-HHH035001: Using dialect: org.hibernate.dialect.MySQL8Dialect, version: 8.0
+15-02-2024-WARN-org.hibernate.engine.jdbc.dialect.internal.DialectFactoryImpl-logSelectedDialect-100-HHH90000026: MySQL8Dialect has been deprecated; use org.hibernate.dialect.MySQLDialect instead
+15-02-2024-INFO-org.hibernate.bytecode.internal.BytecodeProviderInitiator-buildBytecodeProvider-53-HHH000021: Bytecode provider name : bytebuddy
+15-02-2024-INFO-org.hibernate.engine.transaction.jta.platform.internal.JtaPlatformInitiator-initiateService-51-HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+15-02-2024-INFO-org.springframework.orm.jpa.AbstractEntityManagerFactoryBean-buildNativeEntityManagerFactory-437-Initialized JPA EntityManagerFactory for persistence unit 'default'
+15-02-2024-INFO-org.apache.juli.logging.DirectJDKLog-log-173-Starting ProtocolHandler ["http-nio-8080"]
+15-02-2024-INFO-org.springframework.boot.StartupInfoLogger-logStarted-57-Started HotelManagementApplication in 1.608 seconds (process running for 1.948)
+15-02-2024-INFO-org.apache.juli.logging.DirectJDKLog-log-173-Initializing Spring DispatcherServlet 'dispatcherServlet'
+15-02-2024-INFO-org.springframework.web.servlet.FrameworkServlet-initServletBean-532-Initializing Servlet 'dispatcherServlet'
+15-02-2024-INFO-org.springframework.web.servlet.FrameworkServlet-initServletBean-554-Completed initialization in 1 ms
+15-02-2024-INFO-org.springframework.orm.jpa.AbstractEntityManagerFactoryBean-destroy-650-Closing JPA EntityManagerFactory for persistence unit 'default'
+15-02-2024-INFO-com.zaxxer.hikari.HikariDataSource-close-350-HikariPool-1 - Shutdown initiated...
+15-02-2024-INFO-com.zaxxer.hikari.HikariDataSource-close-352-HikariPool-1 - Shutdown completed.
+15-02-2024-INFO-org.hibernate.validator.internal.util.Version-<clinit>-21-HV000001: Hibernate Validator 8.0.0.Final
+15-02-2024-INFO-org.springframework.boot.StartupInfoLogger-logStarting-51-Starting HotelManagementApplication using Java 17.0.10 with PID 22285 (/Users/abdulbasithmohammed/Documents/sts-projects/hotel_management/target/classes started by abdulbasithmohammed in /Users/abdulbasithmohammed/Documents/sts-projects/hotel_management)
+15-02-2024-DEBUG-org.springframework.boot.StartupInfoLogger-logStarting-52-Running with Spring Boot v3.1.0, Spring v6.0.9
+15-02-2024-INFO-org.springframework.boot.SpringApplication-logStartupProfileInfo-639-The following 1 profile is active: "dev"
+15-02-2024-INFO-org.springframework.data.repository.config.RepositoryConfigurationDelegate-registerRepositoriesIn-138-Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+15-02-2024-INFO-org.springframework.data.repository.config.RepositoryConfigurationDelegate-registerRepositoriesIn-208-Finished Spring Data repository scanning in 15 ms. Found 3 JPA repository interfaces.
+15-02-2024-INFO-org.apache.juli.logging.DirectJDKLog-log-173-Initializing ProtocolHandler ["http-nio-8080"]
+15-02-2024-INFO-org.apache.juli.logging.DirectJDKLog-log-173-Starting service [Tomcat]
+15-02-2024-INFO-org.apache.juli.logging.DirectJDKLog-log-173-Starting Servlet engine: [Apache Tomcat/10.1.8]
+15-02-2024-INFO-org.apache.juli.logging.DirectJDKLog-log-173-Initializing Spring embedded WebApplicationContext
+15-02-2024-INFO-org.hibernate.jpa.internal.util.LogHelper-logPersistenceUnitInformation-31-HHH000204: Processing PersistenceUnitInfo [name: default]
+15-02-2024-INFO-org.hibernate.Version-logVersion-44-HHH000412: Hibernate ORM core version 6.2.2.Final
+15-02-2024-INFO-org.hibernate.cfg.Environment-<clinit>-191-HHH000406: Using bytecode reflection optimizer
+15-02-2024-INFO-org.hibernate.bytecode.internal.BytecodeProviderInitiator-buildBytecodeProvider-53-HHH000021: Bytecode provider name : bytebuddy
+15-02-2024-INFO-org.springframework.orm.jpa.persistenceunit.SpringPersistenceUnitInfo-addTransformer-87-No LoadTimeWeaver setup: ignoring JPA class transformer
+15-02-2024-INFO-com.zaxxer.hikari.HikariDataSource-getConnection-110-HikariPool-1 - Starting...
+15-02-2024-INFO-com.zaxxer.hikari.pool.HikariPool-checkFailFast-565-HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@2dbed229
+15-02-2024-INFO-com.zaxxer.hikari.HikariDataSource-getConnection-123-HikariPool-1 - Start completed.
+15-02-2024-INFO-org.hibernate.engine.jdbc.dialect.internal.DialectFactoryImpl-logSelectedDialect-93-HHH035001: Using dialect: org.hibernate.dialect.MySQL8Dialect, version: 8.0
+15-02-2024-WARN-org.hibernate.engine.jdbc.dialect.internal.DialectFactoryImpl-logSelectedDialect-100-HHH90000026: MySQL8Dialect has been deprecated; use org.hibernate.dialect.MySQLDialect instead
+15-02-2024-INFO-org.hibernate.bytecode.internal.BytecodeProviderInitiator-buildBytecodeProvider-53-HHH000021: Bytecode provider name : bytebuddy
+15-02-2024-INFO-org.hibernate.engine.transaction.jta.platform.internal.JtaPlatformInitiator-initiateService-51-HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+15-02-2024-INFO-org.springframework.orm.jpa.AbstractEntityManagerFactoryBean-buildNativeEntityManagerFactory-437-Initialized JPA EntityManagerFactory for persistence unit 'default'
+15-02-2024-INFO-org.apache.juli.logging.DirectJDKLog-log-173-Starting ProtocolHandler ["http-nio-8080"]
+15-02-2024-INFO-org.springframework.boot.StartupInfoLogger-logStarted-57-Started HotelManagementApplication in 1.615 seconds (process running for 1.955)
+15-02-2024-INFO-org.apache.juli.logging.DirectJDKLog-log-173-Initializing Spring DispatcherServlet 'dispatcherServlet'
+15-02-2024-INFO-org.springframework.web.servlet.FrameworkServlet-initServletBean-532-Initializing Servlet 'dispatcherServlet'
+15-02-2024-INFO-org.springframework.web.servlet.FrameworkServlet-initServletBean-554-Completed initialization in 0 ms
+15-02-2024-INFO-org.springframework.orm.jpa.AbstractEntityManagerFactoryBean-destroy-650-Closing JPA EntityManagerFactory for persistence unit 'default'
+15-02-2024-INFO-com.zaxxer.hikari.HikariDataSource-close-350-HikariPool-1 - Shutdown initiated...
+15-02-2024-INFO-com.zaxxer.hikari.HikariDataSource-close-352-HikariPool-1 - Shutdown completed.
+15-02-2024-INFO-org.hibernate.validator.internal.util.Version-<clinit>-21-HV000001: Hibernate Validator 8.0.0.Final
+15-02-2024-INFO-org.springframework.boot.StartupInfoLogger-logStarting-51-Starting HotelManagementApplication using Java 17.0.10 with PID 22387 (/Users/abdulbasithmohammed/Documents/sts-projects/hotel_management/target/classes started by abdulbasithmohammed in /Users/abdulbasithmohammed/Documents/sts-projects/hotel_management)
+15-02-2024-DEBUG-org.springframework.boot.StartupInfoLogger-logStarting-52-Running with Spring Boot v3.1.0, Spring v6.0.9
+15-02-2024-INFO-org.springframework.boot.SpringApplication-logStartupProfileInfo-639-The following 1 profile is active: "dev"
+15-02-2024-INFO-org.springframework.data.repository.config.RepositoryConfigurationDelegate-registerRepositoriesIn-138-Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+15-02-2024-INFO-org.springframework.data.repository.config.RepositoryConfigurationDelegate-registerRepositoriesIn-208-Finished Spring Data repository scanning in 16 ms. Found 3 JPA repository interfaces.
+15-02-2024-INFO-org.apache.juli.logging.DirectJDKLog-log-173-Initializing ProtocolHandler ["http-nio-8080"]
+15-02-2024-INFO-org.apache.juli.logging.DirectJDKLog-log-173-Starting service [Tomcat]
+15-02-2024-INFO-org.apache.juli.logging.DirectJDKLog-log-173-Starting Servlet engine: [Apache Tomcat/10.1.8]
+15-02-2024-INFO-org.apache.juli.logging.DirectJDKLog-log-173-Initializing Spring embedded WebApplicationContext
+15-02-2024-INFO-org.hibernate.jpa.internal.util.LogHelper-logPersistenceUnitInformation-31-HHH000204: Processing PersistenceUnitInfo [name: default]
+15-02-2024-INFO-org.hibernate.Version-logVersion-44-HHH000412: Hibernate ORM core version 6.2.2.Final
+15-02-2024-INFO-org.hibernate.cfg.Environment-<clinit>-191-HHH000406: Using bytecode reflection optimizer
+15-02-2024-INFO-org.hibernate.bytecode.internal.BytecodeProviderInitiator-buildBytecodeProvider-53-HHH000021: Bytecode provider name : bytebuddy
+15-02-2024-INFO-org.springframework.orm.jpa.persistenceunit.SpringPersistenceUnitInfo-addTransformer-87-No LoadTimeWeaver setup: ignoring JPA class transformer
+15-02-2024-INFO-com.zaxxer.hikari.HikariDataSource-getConnection-110-HikariPool-1 - Starting...
+15-02-2024-INFO-com.zaxxer.hikari.pool.HikariPool-checkFailFast-565-HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@28d14fd5
+15-02-2024-INFO-com.zaxxer.hikari.HikariDataSource-getConnection-123-HikariPool-1 - Start completed.
+15-02-2024-INFO-org.hibernate.engine.jdbc.dialect.internal.DialectFactoryImpl-logSelectedDialect-93-HHH035001: Using dialect: org.hibernate.dialect.MySQL8Dialect, version: 8.0
+15-02-2024-WARN-org.hibernate.engine.jdbc.dialect.internal.DialectFactoryImpl-logSelectedDialect-100-HHH90000026: MySQL8Dialect has been deprecated; use org.hibernate.dialect.MySQLDialect instead
+15-02-2024-INFO-org.hibernate.bytecode.internal.BytecodeProviderInitiator-buildBytecodeProvider-53-HHH000021: Bytecode provider name : bytebuddy
+15-02-2024-INFO-org.hibernate.engine.transaction.jta.platform.internal.JtaPlatformInitiator-initiateService-51-HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+15-02-2024-INFO-org.springframework.orm.jpa.AbstractEntityManagerFactoryBean-buildNativeEntityManagerFactory-437-Initialized JPA EntityManagerFactory for persistence unit 'default'
+15-02-2024-INFO-org.apache.juli.logging.DirectJDKLog-log-173-Starting ProtocolHandler ["http-nio-8080"]
+15-02-2024-INFO-org.springframework.boot.StartupInfoLogger-logStarted-57-Started HotelManagementApplication in 2.224 seconds (process running for 2.602)
+15-02-2024-INFO-org.apache.juli.logging.DirectJDKLog-log-173-Initializing Spring DispatcherServlet 'dispatcherServlet'
+15-02-2024-INFO-org.springframework.web.servlet.FrameworkServlet-initServletBean-532-Initializing Servlet 'dispatcherServlet'
+15-02-2024-INFO-org.springframework.web.servlet.FrameworkServlet-initServletBean-554-Completed initialization in 1 ms
+15-02-2024-WARN-org.springframework.core.LocalVariableTableParameterNameDiscoverer-inspectClass-123-Using deprecated '-debug' fallback for parameter name resolution. Compile the affected code with '-parameters' instead or avoid its introspection: com.hotel.controller.RoomInfoController
+15-02-2024-WARN-org.springframework.core.LocalVariableTableParameterNameDiscoverer-inspectClass-123-Using deprecated '-debug' fallback for parameter name resolution. Compile the affected code with '-parameters' instead or avoid its introspection: com.hotel.controller.ReservationInfoController
+15-02-2024-WARN-org.springframework.core.LocalVariableTableParameterNameDiscoverer-inspectClass-123-Using deprecated '-debug' fallback for parameter name resolution. Compile the affected code with '-parameters' instead or avoid its introspection: com.hotel.controller.CustomerInfoController
+15-02-2024-INFO-org.springdoc.api.AbstractOpenApiResource-getOpenApi-401-Init duration for springdoc-openapi is: 151 ms
