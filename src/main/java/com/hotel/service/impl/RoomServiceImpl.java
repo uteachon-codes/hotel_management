@@ -14,7 +14,6 @@ import java.util.Optional;
 public class RoomServiceImpl implements RoomService {
 
     private RoomRepository roomRepository;
-
     @Autowired
     public RoomServiceImpl(RoomRepository roomRepository) {
         super();
@@ -23,9 +22,13 @@ public class RoomServiceImpl implements RoomService {
 
     @Override
     public Room createRoom(Room room) {
+    	
         Date currentDate = new Date();
         room.setCreateDate(currentDate);
+        
         return roomRepository.save(room);
+        
+        
     }
 
     @Override

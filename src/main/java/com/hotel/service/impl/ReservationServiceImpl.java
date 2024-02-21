@@ -29,6 +29,7 @@ public class ReservationServiceImpl implements ReservationService {
     @Override
     public Reservation createReservation(Reservation reservation) {
         try {
+        	
             Date currentDate = new Date();
             reservation.setReservationDate(currentDate);
             Reservation savedReservation = reservationRepository.save(reservation);

@@ -11,6 +11,7 @@ import org.hibernate.annotations.DynamicInsert;
 import org.hibernate.annotations.DynamicUpdate;
 
 import java.util.Date;
+import java.util.HashMap;
 import java.util.Map;
 
 /**
@@ -57,5 +58,6 @@ public class Room {
     @Temporal(TemporalType.DATE)
     @Column(name = "update_date")
     private Date updateDate;
+
 
 }
