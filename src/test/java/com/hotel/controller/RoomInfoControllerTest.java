@@ -1,5 +1,8 @@
 package com.hotel.controller;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.ObjectWriter;
+import com.fasterxml.jackson.databind.SerializationFeature;
 import com.hotel.model.Room;
 import com.hotel.service.RoomService;
 import org.junit.jupiter.api.AfterEach;
@@ -8,9 +11,16 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
+import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
 
 import java.util.*;
+
+import static org.mockito.Mockito.when;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
+import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
+
 
 @WebMvcTest(RoomInfoController.class)
 class RoomInfoControllerTest {
@@ -20,11 +30,12 @@ class RoomInfoControllerTest {
 
     @MockBean
     private RoomService roomService;
-
     Room roomOne;
     Room roomTwo;
 
     List<Room>  roomList = new ArrayList<Room>();
+
+
     @BeforeEach
     void setUp() {
 
@@ -64,18 +75,49 @@ class RoomInfoControllerTest {
     }
 
     @Test
-    void createRoom() {
+    void createRoom() throws Exception {
+
+        ObjectMapper mapper = new ObjectMapper();
+        mapper.configure(SerializationFeature.WRAP_ROOT_VALUE, false);
+        ObjectWriter ow = mapper.writer().withDefaultPrettyPrinter();
+        String requestJson=ow.writeValueAsString(roomOne);
+
+        when(roomService.createRoom(roomOne)).thenReturn(roomOne);
+        this.mockMvc.perform(post("/room/create")
+                .contentType(MediaType.APPLICATION_JSON)
+                .content(requestJson))
+                .andDo(print())
+                .andExpect(status().isOk());
     }
 
     @Test
-    void getRoomById() {
+    void getRoomById() throws Exception {
+        when(roomService.getRoombyId(11)).thenReturn(roomTwo);
+
+        this.mockMvc.perform(get("/room/get/11"))
+                .andDo(print()).andExpect(status().isOk());
     }
 
     @Test
-    void getAllRooms() {
+    void getAllRooms() throws Exception {
+        when(roomService.getAllRoom()).thenReturn(roomList);
+
+        this.mockMvc.perform(get("/room/get"))
+                .andDo(print()).andExpect(status().isOk());
     }
 
     @Test
-    void updateRoom() {
+    void updateRoom() throws Exception {
+        ObjectMapper mapper = new ObjectMapper();
+        mapper.configure(SerializationFeature.WRAP_ROOT_VALUE, false);
+        ObjectWriter ow = mapper.writer().withDefaultPrettyPrinter();
+        String requestJson=ow.writeValueAsString(roomOne);
+
+        when(roomService.updateRoomByFields(10,roomOne)).thenReturn(roomTwo);
+        this.mockMvc.perform(patch("/room/update/10")
+                .contentType(MediaType.APPLICATION_JSON)
+                .content(requestJson))
+                .andDo(print())
+                .andExpect(status().isOk());
     }
 }

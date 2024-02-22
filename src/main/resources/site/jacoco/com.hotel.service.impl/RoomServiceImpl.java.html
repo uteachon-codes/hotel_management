@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>RoomServiceImpl.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">hotel_management</a> &gt; <a href="index.source.html" class="el_package">com.hotel.service.impl</a> &gt; <span class="el_source">RoomServiceImpl.java</span></div><h1>RoomServiceImpl.java</h1><pre class="source lang-java linenums">package com.hotel.service.impl;
+
+import com.hotel.model.Room;
+import com.hotel.repository.RoomRepository;
+import com.hotel.service.RoomService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import java.util.Date;
+import java.util.List;
+import java.util.Optional;
+
+@Service
+public class RoomServiceImpl implements RoomService {
+
+    private RoomRepository roomRepository;
+    @Autowired
+    public RoomServiceImpl(RoomRepository roomRepository) {
+<span class="fc" id="L19">        super();</span>
+<span class="fc" id="L20">        this.roomRepository = roomRepository;</span>
+<span class="fc" id="L21">    }</span>
+
+    @Override
+    public Room createRoom(Room room) {
+    	
+<span class="fc" id="L26">        Date currentDate = new Date();</span>
+<span class="fc" id="L27">        room.setCreateDate(currentDate);</span>
+        
+<span class="fc" id="L29">        return roomRepository.save(room);</span>
+        
+        
+    }
+
+    @Override
+    public Room getRoombyId(int id) {
+<span class="fc" id="L36">        Optional&lt;Room&gt; optionalRoom = roomRepository.findById(id);</span>
+<span class="fc" id="L37">        Room room = optionalRoom.get();</span>
+<span class="fc" id="L38">        return room;</span>
+    }
+
+    @Override
+    public List&lt;Room&gt; getAllRoom() {
+
+<span class="fc" id="L44">        List&lt;Room&gt; rooms = roomRepository.findAll();</span>
+<span class="fc" id="L45">        return rooms;</span>
+
+    }
+
+
+    // updateRoomByFields() method gets the new room details in the newRoom object and the
+    // id of the room to be changed. It gets the existing/old room object
+    // from the db.
+    // Updates the old room with the new room details
+
+    public Room updateRoomByFields(int id, Room room) {
+
+<span class="fc" id="L57">        Optional&lt;Room&gt; existingRoomOpt = roomRepository.findById(id);</span>
+
+<span class="fc" id="L59">        Room existingRoom = null;</span>
+
+<span class="pc bpc" id="L61" title="1 of 2 branches missed.">        if (existingRoomOpt.isPresent()) {</span>
+<span class="fc" id="L62">            existingRoom = existingRoomOpt.get();</span>
+<span class="pc bpc" id="L63" title="1 of 2 branches missed.">            if (room.getRoomType() != null) {</span>
+<span class="fc" id="L64">                existingRoom.setRoomType(room.getRoomType());</span>
+            }
+<span class="pc bpc" id="L66" title="1 of 2 branches missed.">            if (room.getRoomNumber() != null) {</span>
+<span class="fc" id="L67">                existingRoom.setRoomNumber(room.getRoomNumber());</span>
+            }
+<span class="pc bpc" id="L69" title="1 of 2 branches missed.">            if (room.getStatus() != null) {</span>
+<span class="fc" id="L70">                existingRoom.setStatus(room.getStatus());</span>
+            }
+<span class="pc bpc" id="L72" title="1 of 2 branches missed.">            if (room.getAmenities() != null) {</span>
+<span class="fc" id="L73">                existingRoom.setAmenities(room.getAmenities());</span>
+            }
+<span class="pc bpc" id="L75" title="1 of 2 branches missed.">            if (room.getMaxOccupancy() != 0) {</span>
+<span class="fc" id="L76">                existingRoom.setMaxOccupancy(room.getMaxOccupancy());</span>
+            }
+
+<span class="fc" id="L79">            room.setUpdateDate(new Date());</span>
+<span class="fc" id="L80">            roomRepository.save(existingRoom);</span>
+
+        }
+
+<span class="fc" id="L84">        return existingRoom;</span>
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>

@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>RoomInfoController.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">hotel_management</a> &gt; <a href="index.source.html" class="el_package">com.hotel.controller</a> &gt; <span class="el_source">RoomInfoController.java</span></div><h1>RoomInfoController.java</h1><pre class="source lang-java linenums">package com.hotel.controller;
+
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.hotel.model.Room;
+import com.hotel.service.RoomService;
+import jakarta.validation.Valid;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.validation.annotation.Validated;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
+
+/**
+ * Controller class for the room endpoint handling the create, update and get operations.
+ *
+ * @author Abdul Basith
+ */
+
+
+@RestController
+@Validated
+@RequestMapping(&quot;/room&quot;)
+public class RoomInfoController {
+
+    private final RoomService roomService;
+
+<span class="fc" id="L29">    public RoomInfoController(RoomService roomService) {</span>
+        //We can remove the super class because it's not needed here.
+<span class="fc" id="L31">        this.roomService = roomService;</span>
+<span class="fc" id="L32">    }</span>
+
+    //	createRoom() method/endpoint handles a POST request to create a Room by accepting a Room object in the request body,
+//	calling the createRoom method of roomService, 
+//	and returning the created Room object in the response with an HTTP status code of 200 (OK).
+// Instead of @RequestMapping, we can use PostMapping
+    @PostMapping(path = &quot;/create&quot;)
+    public ResponseEntity&lt;Room&gt; createRoom(@Valid @RequestBody Room room) {
+
+<span class="fc" id="L41">            return new ResponseEntity&lt;&gt;(roomService.createRoom(room), HttpStatus.OK);</span>
+}
+
+    //	getRoomById() method/endpoint handles a GET request to get a Room by its id using Service layer
+    // Instead of RequestMapping, we can use GetMapping
+    @GetMapping(path = &quot;/get/{id}&quot;)
+    public ResponseEntity&lt;Room&gt; getRoomById(@Valid @PathVariable int id) {
+
+<span class="fc" id="L49">            return new ResponseEntity&lt;&gt;(roomService.getRoombyId(id), HttpStatus.OK);</span>
+
+    }
+
+    //	getAllRooms() method/endpoint handles a GET request to get All the rooms using methods in servcie layer
+    @GetMapping(&quot;/get&quot;)
+    public ResponseEntity&lt;List&lt;Room&gt;&gt; getAllRooms() {
+<span class="fc" id="L56">        List&lt;Room&gt; roomList = roomService.getAllRoom();</span>
+<span class="fc" id="L57">        return new ResponseEntity&lt;&gt;(roomList, HttpStatus.OK);</span>
+    }
+
+    // updateRoom() method handles the patch request and is used to update the room
+    // details using the service method updateRoom
+    // Here, we can use PatchMapping instead of RequestMapping to match our request.
+
+
+    @PatchMapping(&quot;/update/{id}&quot;)
+    public ResponseEntity&lt;Room&gt; updateRoom(@PathVariable int id,@RequestBody Room room) {
+
+<span class="fc" id="L68">            return new ResponseEntity&lt;&gt;(roomService.updateRoomByFields(id, room), HttpStatus.OK);</span>
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>

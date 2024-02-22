@@ -1,6 +1,5 @@
 package com.hotel.service.impl;
 
-import com.hotel.controller.ReservationInfoController;
 import com.hotel.exception.EntityNotFoundException;
 import com.hotel.model.Customer;
 import com.hotel.model.Reservation;
@@ -20,12 +19,19 @@ import java.util.List;
 public class ReservationServiceImpl implements ReservationService {
 
 
-    @Autowired
+
     private ReservationRepository reservationRepository;
-    @Autowired
+
     private CustomerService customerService;
 
     private static final Logger logger = LogManager.getLogger(ReservationServiceImpl.class);
+
+    @Autowired
+    public ReservationServiceImpl(ReservationRepository reservationRepository,CustomerService customerService) {
+        this.reservationRepository = reservationRepository;
+        this.customerService = customerService;
+    }
+
     @Override
     public Reservation createReservation(Reservation reservation) {
         try {
@@ -36,6 +42,8 @@ public class ReservationServiceImpl implements ReservationService {
             logger.info("Saved Reservation with ID : "+savedReservation.getId());
             return savedReservation;
         }catch(Exception e){
+
+
             logger.error("Issue in saving the reservation ",e);
             throw e;
         }

@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>ReservationServiceImpl.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">hotel_management</a> &gt; <a href="index.source.html" class="el_package">com.hotel.service.impl</a> &gt; <span class="el_source">ReservationServiceImpl.java</span></div><h1>ReservationServiceImpl.java</h1><pre class="source lang-java linenums">package com.hotel.service.impl;
+
+import com.hotel.exception.EntityNotFoundException;
+import com.hotel.model.Customer;
+import com.hotel.model.Reservation;
+import com.hotel.repository.ReservationRepository;
+import com.hotel.service.CustomerService;
+import com.hotel.service.ReservationService;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
+
+@Service
+public class ReservationServiceImpl implements ReservationService {
+
+
+
+    private ReservationRepository reservationRepository;
+
+    private CustomerService customerService;
+
+<span class="fc" id="L27">    private static final Logger logger = LogManager.getLogger(ReservationServiceImpl.class);</span>
+
+    @Autowired
+<span class="fc" id="L30">    public ReservationServiceImpl(ReservationRepository reservationRepository,CustomerService customerService) {</span>
+<span class="fc" id="L31">        this.reservationRepository = reservationRepository;</span>
+<span class="fc" id="L32">        this.customerService = customerService;</span>
+<span class="fc" id="L33">    }</span>
+
+    @Override
+    public Reservation createReservation(Reservation reservation) {
+        try {
+        	
+<span class="fc" id="L39">            Date currentDate = new Date();</span>
+<span class="fc" id="L40">            reservation.setReservationDate(currentDate);</span>
+<span class="fc" id="L41">            Reservation savedReservation = reservationRepository.save(reservation);</span>
+<span class="fc" id="L42">            logger.info(&quot;Saved Reservation with ID : &quot;+savedReservation.getId());</span>
+<span class="fc" id="L43">            return savedReservation;</span>
+<span class="nc" id="L44">        }catch(Exception e){</span>
+
+
+<span class="nc" id="L47">            logger.error(&quot;Issue in saving the reservation &quot;,e);</span>
+<span class="nc" id="L48">            throw e;</span>
+        }
+    }
+
+    @Override
+    public List&lt;Reservation&gt; getAllReservations() {
+<span class="fc" id="L54">        return reservationRepository.findAll();</span>
+    }
+
+    @Override
+    public List&lt;Reservation&gt; getReservationBetweenCheckInDates(Date startDate, Date endDate) {
+<span class="fc" id="L59">        return reservationRepository.findByCheckInDateBetween(startDate, endDate);</span>
+    }
+
+
+    /*
+     *  getReservationCustomerPartialFirstName() takes the input as the partial first name of the guest checks if there is any reservation made for the given guest
+     *
+     * */
+    @Override
+    public List&lt;List&lt;Reservation&gt;&gt; getReservationCustomerPartialFirstName(String partialName) {
+
+        // customersList stores the customers details if any customer name is present with the given partialName
+<span class="fc" id="L71">        List&lt;Customer&gt; customersList = customerService.getCustomerByPartialFirstName(partialName);</span>
+
+        // anyReservationAvailable is a flag used to check if the returned customer names with the given partial names have at least a reservation otherwise we need to throw exception stating the customer name is found but not
+        // reservations of that guest have been found
+
+<span class="fc" id="L76">        boolean anyReservationAvailable = false;</span>
+
+        // In this code block we are checking if there is a customer name found for the given partial name, We cannot directly find the reservations with the given customer name, we first need to find the customerId
+        // then using that customer id need to look for customers.
+        // otherwise we will throw exception stating that the customer details not found with the given customer partial name
+<span class="pc bpc" id="L81" title="1 of 2 branches missed.">        if (!(customersList.isEmpty())) {</span>
+
+            // iniitializing the arraylist to store the customer all reservations
+<span class="fc" id="L84">            List&lt;List&lt;Reservation&gt;&gt; reservationsList = new ArrayList&lt;&gt;();</span>
+
+            // This  for loop checks if there is any reservations made by the customers and stores the reservations in the reservationsList
+<span class="fc bfc" id="L87" title="All 2 branches covered.">            for (Customer customer : customersList) {</span>
+<span class="fc" id="L88">                int customerId = customer.getId();</span>
+
+                // reservationRepository.findByCustomerId is a method used for finding the reservations given the customer
+
+<span class="fc" id="L92">                List&lt;Reservation&gt; reservationByCustomerId = reservationRepository.findByCustomerId(customerId);</span>
+                // Here we are checking if there is any reservations made the returned customer. if there is a single reservation made by the  customer. We will make this flag true otherwise it will remain false
+<span class="pc bpc" id="L94" title="1 of 2 branches missed.">                if (!reservationByCustomerId.isEmpty()) {</span>
+<span class="fc" id="L95">                    anyReservationAvailable = true;</span>
+                }
+<span class="fc" id="L97">                reservationsList.add(reservationByCustomerId);</span>
+<span class="fc" id="L98">            }</span>
+            // Returning the reservations only if there is any reservation found by using the particular partialName and customerId
+<span class="pc bpc" id="L100" title="1 of 2 branches missed.">            if (anyReservationAvailable) {</span>
+<span class="fc" id="L101">                return reservationsList;</span>
+            } else {
+                // Throwing the exception due to the customer with partialName found but that customer does not have reservations
+<span class="nc" id="L104">                throw new EntityNotFoundException(&quot;Reservation Not Found with the Given Customer name &quot; + partialName, 1005);</span>
+            }
+        } else {
+            // Throwing the exception because the customer details  not found with the given partialName
+<span class="nc" id="L108">            throw new EntityNotFoundException(&quot;Customer Not Found with the given details&quot;, 1003);</span>
+        }
+
+    }
+
+    @Override
+    public List&lt;Reservation&gt; reservationsByCustomerId(int customerId) {
+
+<span class="fc" id="L116">        return reservationRepository.findByCustomerId(customerId);</span>
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>

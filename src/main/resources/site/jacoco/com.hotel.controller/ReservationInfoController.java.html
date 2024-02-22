@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>ReservationInfoController.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">hotel_management</a> &gt; <a href="index.source.html" class="el_package">com.hotel.controller</a> &gt; <span class="el_source">ReservationInfoController.java</span></div><h1>ReservationInfoController.java</h1><pre class="source lang-java linenums">package com.hotel.controller;
+
+import com.hotel.model.Reservation;
+import com.hotel.service.ReservationService;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
+
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.List;
+@RestController
+@RequestMapping(path = &quot;/reserve&quot;)
+<span class="fc" id="L18">public class ReservationInfoController {</span>
+
+<span class="fc" id="L20">    private static final Logger logger = LogManager.getLogger(ReservationInfoController.class);</span>
+
+    @Autowired
+    private ReservationService reservationService;
+
+    @RequestMapping(path = &quot;/create&quot;, method = RequestMethod.POST)
+    public ResponseEntity&lt;Reservation&gt; createReservation(@RequestBody Reservation reservation) {
+
+<span class="fc" id="L28">        logger.info(&quot;Received POST request to create a reservation at path /reserve//create with request body: {}&quot;, reservation);</span>
+<span class="fc" id="L29">        return new ResponseEntity&lt;Reservation&gt;(reservationService.createReservation(reservation), HttpStatus.OK);</span>
+
+    }
+
+    @RequestMapping(path = &quot;/get&quot;, method = RequestMethod.GET)
+    public ResponseEntity&lt;List&lt;Reservation&gt;&gt; getAllReservations() {
+<span class="fc" id="L35">        logger.info(&quot;Received GET request to fetch all reservations at /reserve/get.&quot;);</span>
+<span class="fc" id="L36">        return new ResponseEntity&lt;List&lt;Reservation&gt;&gt;(reservationService.getAllReservations(), HttpStatus.OK);</span>
+
+    }
+
+
+    @RequestMapping(path = &quot;/get/checkin/between-dates&quot;, method = RequestMethod.GET)
+    public ResponseEntity&lt;List&lt;Reservation&gt;&gt; getReservationBetweenCheckInDates(@RequestParam(&quot;startDate&quot;) String startDate, @RequestParam(&quot;endDate&quot;) String endDate) throws ParseException {
+//        Sample request
+//        http://localhost:8080/reserve/get/checkin/between-dates?startDate=2024-01-01&amp;endDate=2024-12-31
+
+<span class="fc" id="L46">        SimpleDateFormat dateFormat = new SimpleDateFormat(&quot;yyyy-MM-dd&quot;);</span>
+<span class="fc" id="L47">        Date sDate = dateFormat.parse(startDate);</span>
+<span class="fc" id="L48">        Date eDate = dateFormat.parse(endDate);</span>
+<span class="fc" id="L49">        return new ResponseEntity&lt;List&lt;Reservation&gt;&gt;(reservationService.getReservationBetweenCheckInDates(sDate, eDate), HttpStatus.OK);</span>
+
+    }
+
+
+    /*
+     *  This controller method returns the reservations taking input as customer partialName
+     * */
+    @RequestMapping(path = &quot;/getPartialName/{partialName}&quot;, method = RequestMethod.GET)
+    public ResponseEntity&lt;List&lt;List&lt;Reservation&gt;&gt;&gt; getReservationWithPartialName(@PathVariable String partialName) {
+        // Retrieve reservations based on a partial name from the service.
+<span class="fc" id="L60">        List&lt;List&lt;Reservation&gt;&gt; reservations = reservationService.getReservationCustomerPartialFirstName(partialName);</span>
+        // Return the reservations in a ResponseEntity with an HTTP OK status.
+<span class="fc" id="L62">        return new ResponseEntity&lt;List&lt;List&lt;Reservation&gt;&gt;&gt;(reservations, HttpStatus.OK);</span>
+
+    }
+
+    @RequestMapping(path = &quot;/get/{customerId}&quot;, method = RequestMethod.GET)
+    public ResponseEntity&lt;List&lt;Reservation&gt;&gt; getreservationsByCustomerId(@PathVariable int customerId) {
+
+<span class="fc" id="L69">        List&lt;Reservation&gt; reservations = reservationService.reservationsByCustomerId(customerId);</span>
+
+
+<span class="fc" id="L72">        return new ResponseEntity&lt;List&lt;Reservation&gt;&gt;(reservations, HttpStatus.OK);</span>
+
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>
