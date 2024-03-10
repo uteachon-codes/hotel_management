@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>CustomerServiceImpl.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">hotel_management</a> &gt; <a href="index.source.html" class="el_package">com.hotel.service.impl</a> &gt; <span class="el_source">CustomerServiceImpl.java</span></div><h1>CustomerServiceImpl.java</h1><pre class="source lang-java linenums">package com.hotel.service.impl;
+
+import com.hotel.model.Customer;
+import com.hotel.repository.CustomerRepository;
+import com.hotel.service.CustomerService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import java.util.List;
+import java.util.Optional;
+
+
+/**
+ * The CustomerServiceImpl class implements the CustomerService interface and provides
+ * the business logic for managing customer data. It interacts with the CustomerRepository
+ * to perform CRUD operations on customer records.
+ *
+ * @author Abdul Basith
+ */
+@Service
+public class CustomerServiceImpl implements CustomerService {
+
+
+    private CustomerRepository repository;
+
+    @Autowired
+<span class="fc" id="L27">    public CustomerServiceImpl(CustomerRepository repository) {</span>
+<span class="fc" id="L28">        this.repository = repository;</span>
+<span class="fc" id="L29">    }</span>
+
+    @Override
+    public Customer createCustomer(Customer customer) {
+
+<span class="fc" id="L34">        return repository.save(customer);</span>
+
+    }
+
+    @Override
+    public List&lt;Customer&gt; getAllCustomers() {
+<span class="fc" id="L40">        return repository.findAll();</span>
+    }
+
+    @Override
+    public Customer getCustomerById(int id) {
+
+<span class="fc" id="L46">        return repository.findById(id).get();</span>
+    }
+
+    public List&lt;Customer&gt; getCustomerByName(String firstName, String lastName) {
+
+<span class="fc" id="L51">        return repository.findByFirstNameAndLastName(firstName, lastName);</span>
+    }
+
+    @Override
+    public Customer updateCustomer(int id, Customer customer) {
+
+<span class="fc" id="L57">        Optional&lt;Customer&gt; existingCustomerOpt = repository.findById(id);</span>
+
+<span class="fc" id="L59">        Customer existingCustomer = null;</span>
+
+<span class="pc bpc" id="L61" title="1 of 2 branches missed.">        if (existingCustomerOpt.isPresent()) {</span>
+<span class="fc" id="L62">            existingCustomer = existingCustomerOpt.get();</span>
+
+<span class="pc bpc" id="L64" title="1 of 2 branches missed.">            if (customer.getCity() != null) {</span>
+<span class="fc" id="L65">                existingCustomer.setCity(customer.getCity());</span>
+            }
+<span class="pc bpc" id="L67" title="1 of 2 branches missed.">            if (customer.getCountry() != null) {</span>
+<span class="fc" id="L68">                existingCustomer.setCountry(customer.getCountry());</span>
+            }
+<span class="pc bpc" id="L70" title="1 of 2 branches missed.">            if (customer.getState() != null) {</span>
+<span class="fc" id="L71">                existingCustomer.setState(customer.getState());</span>
+            }
+<span class="pc bpc" id="L73" title="1 of 2 branches missed.">            if (customer.getFirstName() != null) {</span>
+<span class="fc" id="L74">                existingCustomer.setFirstName(customer.getFirstName());</span>
+            }
+<span class="pc bpc" id="L76" title="1 of 2 branches missed.">            if (customer.getLastName() != null) {</span>
+<span class="fc" id="L77">                existingCustomer.setLastName(customer.getLastName());</span>
+            }
+<span class="pc bpc" id="L79" title="1 of 2 branches missed.">            if (customer.getZip() != null) {</span>
+<span class="fc" id="L80">                existingCustomer.setZip(customer.getZip());</span>
+            }
+<span class="pc bpc" id="L82" title="1 of 2 branches missed.">            if (customer.getEmailAddress() != null) {</span>
+<span class="fc" id="L83">                existingCustomer.setEmailAddress(customer.getEmailAddress());</span>
+            }
+<span class="pc bpc" id="L85" title="1 of 2 branches missed.">            if (customer.getPreferences() != null) {</span>
+<span class="nc" id="L86">                existingCustomer.setPreferences(customer.getPreferences());</span>
+            }
+<span class="pc bpc" id="L88" title="1 of 2 branches missed.">            if (customer.getAdditionalAddressInfo() != null) {</span>
+<span class="fc" id="L89">                existingCustomer.setAdditionalAddressInfo(customer.getAdditionalAddressInfo());</span>
+            }
+<span class="pc bpc" id="L91" title="1 of 2 branches missed.">            if (customer.getStreetAddress() != null) {</span>
+<span class="fc" id="L92">                existingCustomer.setStreetAddress(customer.getStreetAddress());</span>
+            }
+<span class="pc bpc" id="L94" title="1 of 2 branches missed.">            if (customer.getPhoneNumber() != null) {</span>
+<span class="fc" id="L95">                existingCustomer.setPhoneNumber(customer.getPhoneNumber());</span>
+            }
+
+<span class="fc" id="L98">            repository.save(existingCustomer);</span>
+        }
+<span class="fc" id="L100">        return existingCustomer;</span>
+    }
+
+    @Override
+    public List&lt;Customer&gt; getCustomerByPartialFirstName(String partialName) {
+
+<span class="fc" id="L106">        return repository.findByFirstNameContaining(partialName);</span>
+
+    }
+
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>

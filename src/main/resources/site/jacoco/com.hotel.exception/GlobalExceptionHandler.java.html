@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>GlobalExceptionHandler.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">hotel_management</a> &gt; <a href="index.source.html" class="el_package">com.hotel.exception</a> &gt; <span class="el_source">GlobalExceptionHandler.java</span></div><h1>GlobalExceptionHandler.java</h1><pre class="source lang-java linenums">package com.hotel.exception;
+
+import com.fasterxml.jackson.core.JsonProcessingException;
+import org.springframework.dao.DataIntegrityViolationException;
+import org.springframework.http.HttpStatus;
+import org.springframework.validation.FieldError;
+import org.springframework.web.bind.MethodArgumentNotValidException;
+import org.springframework.web.bind.annotation.ExceptionHandler;
+import org.springframework.web.bind.annotation.ResponseStatus;
+import org.springframework.web.bind.annotation.RestControllerAdvice;
+
+import java.util.HashMap;
+import java.util.Map;
+import java.util.NoSuchElementException;
+
+/**
+ * GlobalExceptionHandler is a controller advice class that handles exceptions across all controllers in
+ * the application. It provides centralized exception handling logic and responses..
+ *
+ * @author Abdul Basith
+ */
+
+
+@RestControllerAdvice
+<span class="fc" id="L25">public class GlobalExceptionHandler {</span>
+
+    @ResponseStatus(HttpStatus.BAD_REQUEST)
+    @ExceptionHandler(MethodArgumentNotValidException.class)
+    public Map&lt;String, String&gt; handleValidationExceptions(
+            MethodArgumentNotValidException ex) {
+<span class="nc" id="L31">        Map&lt;String, String&gt; errors = new HashMap&lt;&gt;();</span>
+<span class="nc" id="L32">        ex.getBindingResult().getAllErrors().forEach((error) -&gt; {</span>
+<span class="nc" id="L33">            String fieldName = ((FieldError) error).getField();</span>
+<span class="nc" id="L34">            String errorMessage = error.getDefaultMessage();</span>
+<span class="nc" id="L35">            errors.put(fieldName, errorMessage);</span>
+<span class="nc" id="L36">        });</span>
+<span class="nc" id="L37">        return errors;</span>
+    }
+
+    @ResponseStatus(HttpStatus.BAD_REQUEST)
+    @ExceptionHandler(JsonProcessingException.class)
+    public Map&lt;String, String&gt; handleJsonDeserializationException(
+            JsonProcessingException ex) {
+<span class="nc" id="L44">        Map&lt;String, String&gt; errors = new HashMap&lt;&gt;();</span>
+<span class="nc" id="L45">        errors.put(&quot;Error Code:&quot;, &quot;1001&quot;);</span>
+<span class="nc" id="L46">        errors.put(&quot;Error Message:&quot;, &quot;Please check your input&quot;);</span>
+<span class="nc" id="L47">        return errors;</span>
+    }
+
+    @ResponseStatus(HttpStatus.BAD_REQUEST)
+    @ExceptionHandler(DataIntegrityViolationException.class)
+    public Map&lt;String, String&gt; handleValidationExceptions(
+            DataIntegrityViolationException ex) {
+<span class="nc" id="L54">        Map&lt;String, String&gt; errors = new HashMap&lt;&gt;();</span>
+<span class="nc" id="L55">        errors.put(&quot;Duplicate Room Error&quot;, &quot;Room name already exists&quot;);</span>
+<span class="nc" id="L56">        return errors;</span>
+    }
+
+    @ResponseStatus(HttpStatus.BAD_REQUEST)
+    @ExceptionHandler(NoSuchElementException.class)
+    public String elementNotFound(NoSuchElementException ex) {
+
+<span class="nc" id="L63">        return &quot;Room Number Not Found !!&quot;;</span>
+    }
+
+    @ResponseStatus(HttpStatus.BAD_REQUEST)
+    @ExceptionHandler(Exception.class)
+    public Map&lt;String, String&gt; commonError(Exception e) {
+
+<span class="nc" id="L70">        Map&lt;String, String&gt; error = new HashMap&lt;&gt;();</span>
+<span class="nc" id="L71">        error.put(&quot;Error&quot;, &quot;Something went wrong !!&quot;);</span>
+<span class="nc" id="L72">        return error;</span>
+    }
+
+    @ResponseStatus(HttpStatus.BAD_REQUEST)
+    @ExceptionHandler(EntityNotFoundException.class)
+    public Map&lt;String, Integer&gt; customerNotFoundException(EntityNotFoundException ex) {
+
+<span class="fc" id="L79">        Map&lt;String, Integer&gt; error = new HashMap&lt;&gt;();</span>
+<span class="fc" id="L80">        error.put(ex.getMessage(), ex.getEntityId());</span>
+<span class="fc" id="L81">        return error;</span>
+    }
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>

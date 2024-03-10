@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>EntityNotFoundException.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">hotel_management</a> &gt; <a href="index.source.html" class="el_package">com.hotel.exception</a> &gt; <span class="el_source">EntityNotFoundException.java</span></div><h1>EntityNotFoundException.java</h1><pre class="source lang-java linenums">package com.hotel.exception;
+
+
+/**
+ * EntityNotFoundException is a custom exception class that extends RuntimeException.
+ * It is used to indicate that a customer with a specified ID was not found in the system.
+ * This exception is typically thrown when attempting to retrieve or manipulate customer data.
+ *
+ * @author Abdul Basith
+ */
+public class EntityNotFoundException extends RuntimeException {
+
+    private String message;
+    private int entityId;
+
+<span class="fc" id="L16">    public EntityNotFoundException(String message, int entityId) {</span>
+<span class="fc" id="L17">        this.message = message;</span>
+<span class="fc" id="L18">        this.entityId = entityId;</span>
+<span class="fc" id="L19">    }</span>
+
+    @Override
+    public String toString() {
+<span class="nc" id="L23">        final StringBuilder sb = new StringBuilder(&quot;EntityNotFoundException{&quot;);</span>
+<span class="nc" id="L24">        sb.append(&quot;message='&quot;).append(message).append('\'');</span>
+<span class="nc" id="L25">        sb.append(&quot;, entityId=&quot;).append(entityId);</span>
+<span class="nc" id="L26">        sb.append('}');</span>
+<span class="nc" id="L27">        return sb.toString();</span>
+    }
+
+    @Override
+    public String getMessage() {
+<span class="fc" id="L32">        return message;</span>
+    }
+
+    public void setMessage(String message) {
+<span class="nc" id="L36">        this.message = message;</span>
+<span class="nc" id="L37">    }</span>
+
+    public int getEntityId() {
+<span class="fc" id="L40">        return entityId;</span>
+    }
+
+    public void setEntityId(int entityId) {
+<span class="nc" id="L44">        this.entityId = entityId;</span>
+<span class="nc" id="L45">    }</span>
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>

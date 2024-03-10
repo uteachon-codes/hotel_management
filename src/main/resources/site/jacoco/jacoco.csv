@@ -1,0 +1,14 @@
+GROUP,PACKAGE,CLASS,INSTRUCTION_MISSED,INSTRUCTION_COVERED,BRANCH_MISSED,BRANCH_COVERED,LINE_MISSED,LINE_COVERED,COMPLEXITY_MISSED,COMPLEXITY_COVERED,METHOD_MISSED,METHOD_COVERED
+hotel_management,com.hotel.controller,ReservationInfoController,0,76,0,0,0,14,0,7,0,7
+hotel_management,com.hotel.controller,CustomerInfoController,28,76,3,3,5,15,3,7,0,7
+hotel_management,com.hotel.controller,RoomInfoController,0,44,0,0,0,8,0,5,0,5
+hotel_management,com.hotel,HotelManagementApplication,5,3,0,0,2,1,1,1,1,1
+hotel_management,com.hotel.service.impl,CustomerServiceImpl,4,130,12,12,1,35,12,7,0,7
+hotel_management,com.hotel.service.impl,ReservationServiceImpl,20,94,3,5,5,26,3,8,0,7
+hotel_management,com.hotel.service.impl,RoomServiceImpl,0,99,6,6,0,28,6,5,0,5
+hotel_management,com.hotel.repository,JsonMapConverter,32,8,2,0,7,2,3,1,2,1
+hotel_management,com.hotel.model,Room,175,146,42,16,1,8,31,19,3,18
+hotel_management,com.hotel.model,Reservation,207,151,46,10,0,11,29,24,1,24
+hotel_management,com.hotel.model,Customer,258,240,70,26,0,13,50,27,2,27
+hotel_management,com.hotel.exception,EntityNotFoundException,36,15,0,0,9,6,3,3,3,3
+hotel_management,com.hotel.exception,GlobalExceptionHandler,65,17,0,0,18,4,6,2,6,2

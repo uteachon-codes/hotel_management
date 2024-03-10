@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>CustomerInfoController.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">hotel_management</a> &gt; <a href="index.source.html" class="el_package">com.hotel.controller</a> &gt; <span class="el_source">CustomerInfoController.java</span></div><h1>CustomerInfoController.java</h1><pre class="source lang-java linenums">package com.hotel.controller;
+
+import com.hotel.exception.EntityNotFoundException;
+import com.hotel.model.Customer;
+import com.hotel.service.CustomerService;
+import jakarta.validation.Valid;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.validation.annotation.Validated;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
+import java.util.NoSuchElementException;
+
+/**
+ * CustomerInfoController is a controller responsible for handling HTTP requests
+ * related to customer information, including creation, retrieval, updating, and searching for customers.
+ * It serves as the RESTful API endpoint for managing customer data.
+ *
+ * @author Abdul Basith
+ */
+@RestController
+@Validated
+@RequestMapping(value = &quot;/customer&quot;)
+<span class="fc" id="L26">public class CustomerInfoController {</span>
+    @Autowired
+    private CustomerService customerService;
+
+
+    @RequestMapping(path = &quot;/create&quot;, method = RequestMethod.POST)
+    public ResponseEntity&lt;Customer&gt; createCustomers(@Valid @RequestBody Customer customer) {
+<span class="fc" id="L33">        return new ResponseEntity&lt;&gt;(customerService.createCustomer(customer), HttpStatus.OK);</span>
+    }
+
+    @RequestMapping(path = &quot;/get&quot;, method = RequestMethod.GET)
+    public ResponseEntity&lt;List&lt;Customer&gt;&gt; getCustomers() {
+<span class="fc" id="L38">        List&lt;Customer&gt; allCustomers = customerService.getAllCustomers();</span>
+<span class="pc bpc" id="L39" title="1 of 2 branches missed.">        if(allCustomers.isEmpty()){</span>
+<span class="nc" id="L40">            throw new EntityNotFoundException(&quot;No Customer Records Available&quot;,0);</span>
+        }else {
+<span class="fc" id="L42">        return new ResponseEntity&lt;List&lt;Customer&gt;&gt;(allCustomers, HttpStatus.OK);</span>
+        }
+    }
+
+
+    @RequestMapping(path = &quot;/get/{id}&quot;, method = RequestMethod.GET)
+    public ResponseEntity&lt;Customer&gt; getCustomers(@PathVariable int id) {
+        Customer customer;
+        try {
+<span class="fc" id="L51">            customer = customerService.getCustomerById(id);</span>
+<span class="nc" id="L52">        } catch (NoSuchElementException e) {</span>
+<span class="nc" id="L53">            throw new EntityNotFoundException(&quot;No customer exists with the given id&quot;, id);</span>
+<span class="fc" id="L54">        }</span>
+<span class="fc" id="L55">        return new ResponseEntity&lt;Customer&gt;(customer, HttpStatus.OK);</span>
+
+    }
+
+    @RequestMapping(path = &quot;/get/{firstName}/{lastName}&quot;, method = RequestMethod.GET)
+    public ResponseEntity&lt;List&lt;Customer&gt;&gt; getCustomerByName(@PathVariable String firstName, @PathVariable String lastName) {
+
+<span class="fc" id="L62">        List&lt;Customer&gt; customerByName = customerService.getCustomerByName(firstName, lastName);</span>
+
+<span class="pc bpc" id="L64" title="1 of 2 branches missed.">        if (customerByName.isEmpty()) {</span>
+<span class="nc" id="L65">            throw new EntityNotFoundException(&quot;Customer with given firstname &quot; + firstName + &quot; and last name &quot; + lastName + &quot; was not found &quot;, 0);</span>
+        }
+<span class="fc" id="L67">        return new ResponseEntity&lt;List&lt;Customer&gt;&gt;(customerByName, HttpStatus.OK);</span>
+    }
+
+    @RequestMapping(path = &quot;/update/{id}&quot;, method = RequestMethod.PATCH)
+    public ResponseEntity&lt;Customer&gt; updateCustomers(@PathVariable int id, @RequestBody Customer customer) {
+
+<span class="fc" id="L73">        return new ResponseEntity&lt;Customer&gt;(customerService.updateCustomer(id, customer), HttpStatus.OK);</span>
+    }
+
+    @RequestMapping(path = &quot;/getFirst/{partialFirstName}&quot;, method = RequestMethod.GET)
+    public ResponseEntity&lt;List&lt;Customer&gt;&gt; getCustomerByPartialFirstName(@PathVariable String partialFirstName) {
+<span class="fc" id="L78">        List&lt;Customer&gt; customerByName = customerService.getCustomerByPartialFirstName(partialFirstName);</span>
+<span class="pc bpc" id="L79" title="1 of 2 branches missed.">        if (customerByName.isEmpty()) {</span>
+<span class="nc" id="L80">            throw new EntityNotFoundException(&quot;Customer with given partial name &quot; + partialFirstName + &quot; was not found &quot;, 0);</span>
+        }
+
+<span class="fc" id="L83">        return new ResponseEntity&lt;List&lt;Customer&gt;&gt;(customerByName, HttpStatus.OK);</span>
+    }
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>

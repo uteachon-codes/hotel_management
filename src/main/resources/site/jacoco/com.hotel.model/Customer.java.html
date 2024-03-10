@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>Customer.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">hotel_management</a> &gt; <a href="index.source.html" class="el_package">com.hotel.model</a> &gt; <span class="el_source">Customer.java</span></div><h1>Customer.java</h1><pre class="source lang-java linenums">package com.hotel.model;
+
+import com.hotel.repository.JsonMapConverter;
+import jakarta.persistence.*;
+import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Size;
+import lombok.Data;
+import org.hibernate.annotations.DynamicInsert;
+import org.hibernate.annotations.DynamicUpdate;
+
+import java.util.Map;
+
+/**
+ * The Customer class represents a customer entity in the system.
+ * It defines the attributes and constraints for customer data, including personal information
+ * and preferences, and provides getters and setters for accessing and modifying this data.
+ *
+ * @author Abdul Basith
+ */
+@Entity
+@Table(name = &quot;customer&quot;)
+<span class="pc bpc" id="L23" title="70 of 96 branches missed.">@Data</span>
+@DynamicInsert
+@DynamicUpdate
+public class Customer {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+<span class="fc" id="L30">    private int id;</span>
+
+    @NotBlank(message = &quot;First Name cannot be left blank&quot;)
+    @Column(name = &quot;first_name&quot;)
+<span class="fc" id="L34">    private String firstName;</span>
+
+    @NotBlank(message = &quot;Last Name cannot be left blank&quot;)
+    @Column(name = &quot;last_name&quot;)
+<span class="fc" id="L38">    private String lastName;</span>
+
+    @Size(min = 10, max = 13, message = &quot;Phone number should be between 10 t0 13 characters&quot;)
+    @Column(name = &quot;phone_number&quot;)
+<span class="fc" id="L42">    private String phoneNumber;</span>
+
+    @Email(message = &quot;Accepted Email format is joe@xyz.com&quot;)
+    @Column(name = &quot;email_address&quot;)
+<span class="fc" id="L46">    private String emailAddress;</span>
+
+    @NotBlank(message = &quot;Street address cannot be left blank&quot;)
+    @Column(name = &quot;street_address&quot;)
+<span class="fc" id="L50">    private String streetAddress;</span>
+
+    @Column(name = &quot;additional_address_info&quot;)
+<span class="fc" id="L53">    private String additionalAddressInfo;</span>
+
+    @NotBlank(message = &quot;City cannot be left blank&quot;)
+<span class="fc" id="L56">    private String city;</span>
+
+    @NotBlank(message = &quot;State cannot be left blank&quot;)
+<span class="fc" id="L59">    private String state;</span>
+
+    @NotBlank(message = &quot;Zip cannot be left blank&quot;)
+<span class="fc" id="L62">    private String zip;</span>
+
+<span class="fc" id="L64">    private String country;</span>
+
+    @Column(name = &quot;preferences&quot;, columnDefinition = &quot;json&quot;)
+    @Convert(converter = JsonMapConverter.class)
+<span class="fc" id="L68">    private Map&lt;String, Object&gt; preferences;</span>
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>

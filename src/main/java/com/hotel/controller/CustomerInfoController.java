@@ -35,7 +35,12 @@ public class CustomerInfoController {
 
     @RequestMapping(path = "/get", method = RequestMethod.GET)
     public ResponseEntity<List<Customer>> getCustomers() {
-        return new ResponseEntity<List<Customer>>(customerService.getAllCustomers(), HttpStatus.OK);
+        List<Customer> allCustomers = customerService.getAllCustomers();
+        if(allCustomers.isEmpty()){
+            throw new EntityNotFoundException("No Customer Records Available",0);
+        }else {
+        return new ResponseEntity<List<Customer>>(allCustomers, HttpStatus.OK);
+        }
     }
 
 
@@ -57,7 +62,7 @@ public class CustomerInfoController {
         List<Customer> customerByName = customerService.getCustomerByName(firstName, lastName);
 
         if (customerByName.isEmpty()) {
-            throw new EntityNotFoundException("Customer with given firstname " + firstName + " and last name " + lastName + " was not found ", 000);
+            throw new EntityNotFoundException("Customer with given firstname " + firstName + " and last name " + lastName + " was not found ", 0);
         }
         return new ResponseEntity<List<Customer>>(customerByName, HttpStatus.OK);
     }
@@ -72,7 +77,7 @@ public class CustomerInfoController {
     public ResponseEntity<List<Customer>> getCustomerByPartialFirstName(@PathVariable String partialFirstName) {
         List<Customer> customerByName = customerService.getCustomerByPartialFirstName(partialFirstName);
         if (customerByName.isEmpty()) {
-            throw new EntityNotFoundException("Customer with given partial name " + partialFirstName + " was not found ", 000);
+            throw new EntityNotFoundException("Customer with given partial name " + partialFirstName + " was not found ", 0);
         }
 
         return new ResponseEntity<List<Customer>>(customerByName, HttpStatus.OK);
