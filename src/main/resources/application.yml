@@ -1,0 +1,17 @@
+spring:
+  datasource:
+    url: jdbc:mysql://localhost:3306/hotel_mgmt
+    username: root
+    password: root@123
+
+  jpa:
+    show-sql: true
+
+    # Hibernate
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.MySQL8Dialect
+
+    # Hibernate auto ddl
+    hibernate:
+      ddl-auto: update

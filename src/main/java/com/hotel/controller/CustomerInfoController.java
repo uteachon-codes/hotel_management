@@ -2,7 +2,10 @@ package com.hotel.controller;
 
 import com.hotel.exception.EntityNotFoundException;
 import com.hotel.model.Customer;
+import com.hotel.model.User;
+import com.hotel.model.UserModel;
 import com.hotel.service.CustomerService;
+import com.hotel.service.UserService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -27,6 +30,13 @@ public class CustomerInfoController {
     @Autowired
     private CustomerService customerService;
 
+    @Autowired
+    private UserService userService;
+    @RequestMapping(path = "/usercreate",method = RequestMethod.POST)
+    public String registerUser(@RequestBody UserModel userModel) {
+        User user = userService.registerUser(userModel);
+        return "Success";
+    }
 
     @RequestMapping(path = "/create", method = RequestMethod.POST)
     public ResponseEntity<Customer> createCustomers(@Valid @RequestBody Customer customer) {

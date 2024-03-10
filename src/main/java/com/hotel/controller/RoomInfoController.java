@@ -7,6 +7,7 @@ import com.hotel.service.RoomService;
 import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
@@ -44,6 +45,7 @@ public class RoomInfoController {
     //	getRoomById() method/endpoint handles a GET request to get a Room by its id using Service layer
     // Instead of RequestMapping, we can use GetMapping
     @GetMapping(path = "/get/{id}")
+    @PreAuthorize("hasRole('ROLE_USER') || hasAuthority('ROLE_USER')")
     public ResponseEntity<Room> getRoomById(@Valid @PathVariable int id) {
 
             return new ResponseEntity<>(roomService.getRoombyId(id), HttpStatus.OK);
