@@ -1,7 +1,5 @@
 package com.hotel.controller;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import com.hotel.model.Room;
 import com.hotel.service.RoomService;
 import jakarta.validation.Valid;
@@ -37,6 +35,7 @@ public class RoomInfoController {
 //	and returning the created Room object in the response with an HTTP status code of 200 (OK).
 // Instead of @RequestMapping, we can use PostMapping
     @PostMapping(path = "/create")
+    @PreAuthorize("hasAuthority('ROLE_MANAGER')")
     public ResponseEntity<Room> createRoom(@Valid @RequestBody Room room) {
 
             return new ResponseEntity<>(roomService.createRoom(room), HttpStatus.OK);
@@ -45,7 +44,7 @@ public class RoomInfoController {
     //	getRoomById() method/endpoint handles a GET request to get a Room by its id using Service layer
     // Instead of RequestMapping, we can use GetMapping
     @GetMapping(path = "/get/{id}")
-    @PreAuthorize("hasRole('ROLE_USER') || hasAuthority('ROLE_USER')")
+    @PreAuthorize("hasAuthority('ROLE_USER') || hasAuthority('ROLE_MANAGER')" )
     public ResponseEntity<Room> getRoomById(@Valid @PathVariable int id) {
 
             return new ResponseEntity<>(roomService.getRoombyId(id), HttpStatus.OK);
@@ -54,6 +53,7 @@ public class RoomInfoController {
 
     //	getAllRooms() method/endpoint handles a GET request to get All the rooms using methods in servcie layer
     @GetMapping("/get")
+    @PreAuthorize("hasAuthority('ROLE_USER') || hasAuthority('ROLE_MANAGER')" )
     public ResponseEntity<List<Room>> getAllRooms() {
         List<Room> roomList = roomService.getAllRoom();
         return new ResponseEntity<>(roomList, HttpStatus.OK);
@@ -65,6 +65,7 @@ public class RoomInfoController {
 
 
     @PatchMapping("/update/{id}")
+    @PreAuthorize("hasAuthority('ROLE_MANAGER')")
     public ResponseEntity<Room> updateRoom(@PathVariable int id,@RequestBody Room room) {
 
             return new ResponseEntity<>(roomService.updateRoomByFields(id, room), HttpStatus.OK);

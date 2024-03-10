@@ -7,6 +7,7 @@ import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.text.ParseException;
@@ -22,7 +23,8 @@ public class ReservationInfoController {
     @Autowired
     private ReservationService reservationService;
 
-    @RequestMapping(path = "/create", method = RequestMethod.POST)
+    @PostMapping("/create")
+    @PreAuthorize("hasAuthority('ROLE_MANAGER')")
     public ResponseEntity<Reservation> createReservation(@RequestBody Reservation reservation) {
 
         logger.info("Received POST request to create a reservation at path /reserve//create with request body: {}", reservation);
@@ -30,7 +32,8 @@ public class ReservationInfoController {
 
     }
 
-    @RequestMapping(path = "/get", method = RequestMethod.GET)
+    @GetMapping("/get")
+    @PreAuthorize("hasAuthority('ROLE_USER') || hasAuthority('ROLE_MANAGER')" )
     public ResponseEntity<List<Reservation>> getAllReservations() {
         logger.info("Received GET request to fetch all reservations at /reserve/get.");
         return new ResponseEntity<List<Reservation>>(reservationService.getAllReservations(), HttpStatus.OK);
@@ -38,7 +41,8 @@ public class ReservationInfoController {
     }
 
 
-    @RequestMapping(path = "/get/checkin/between-dates", method = RequestMethod.GET)
+    @GetMapping("/get/checkin/between-dates")
+    @PreAuthorize("hasAuthority('ROLE_USER') || hasAuthority('ROLE_MANAGER')" )
     public ResponseEntity<List<Reservation>> getReservationBetweenCheckInDates(@RequestParam("startDate") String startDate, @RequestParam("endDate") String endDate) throws ParseException {
 //        Sample request
 //        http://localhost:8080/reserve/get/checkin/between-dates?startDate=2024-01-01&endDate=2024-12-31
@@ -54,7 +58,8 @@ public class ReservationInfoController {
     /*
      *  This controller method returns the reservations taking input as customer partialName
      * */
-    @RequestMapping(path = "/getPartialName/{partialName}", method = RequestMethod.GET)
+    @GetMapping("/getPartialName/{partialName}")
+    @PreAuthorize("hasAuthority('ROLE_USER') || hasAuthority('ROLE_MANAGER')" )
     public ResponseEntity<List<List<Reservation>>> getReservationWithPartialName(@PathVariable String partialName) {
         // Retrieve reservations based on a partial name from the service.
         List<List<Reservation>> reservations = reservationService.getReservationCustomerPartialFirstName(partialName);
@@ -63,7 +68,8 @@ public class ReservationInfoController {
 
     }
 
-    @RequestMapping(path = "/get/{customerId}", method = RequestMethod.GET)
+    @GetMapping("/get/{customerId}")
+    @PreAuthorize("hasAuthority('ROLE_USER') || hasAuthority('ROLE_MANAGER')" )
     public ResponseEntity<List<Reservation>> getreservationsByCustomerId(@PathVariable int customerId) {
 
         List<Reservation> reservations = reservationService.reservationsByCustomerId(customerId);
