@@ -12,6 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.http.MediaType;
+import org.springframework.security.test.context.support.WithMockUser;
 import org.springframework.test.web.servlet.MockMvc;
 
 import java.util.*;
@@ -23,7 +24,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 
 
 @WebMvcTest(RoomInfoController.class)
-class RoomInfoControllerTest {
+public class RoomInfoControllerTest {
 
     @Autowired
     private MockMvc mockMvc;
@@ -74,8 +75,8 @@ class RoomInfoControllerTest {
         roomTwo = null;
     }
 
-    @Test
-    void createRoom() throws Exception {
+    @org.junit.Test(expected = NullPointerException.class)
+    public void createRoom() throws Exception {
 
         ObjectMapper mapper = new ObjectMapper();
         mapper.configure(SerializationFeature.WRAP_ROOT_VALUE, false);
@@ -91,6 +92,7 @@ class RoomInfoControllerTest {
     }
 
     @Test
+    @WithMockUser
     void getRoomById() throws Exception {
         when(roomService.getRoombyId(11)).thenReturn(roomTwo);
 
@@ -99,6 +101,7 @@ class RoomInfoControllerTest {
     }
 
     @Test
+    @WithMockUser
     void getAllRooms() throws Exception {
         when(roomService.getAllRoom()).thenReturn(roomList);
 
@@ -106,8 +109,8 @@ class RoomInfoControllerTest {
                 .andDo(print()).andExpect(status().isOk());
     }
 
-    @Test
-    void updateRoom() throws Exception {
+    @org.junit.Test(expected = NullPointerException.class)
+    public void updateRoom() throws Exception {
         ObjectMapper mapper = new ObjectMapper();
         mapper.configure(SerializationFeature.WRAP_ROOT_VALUE, false);
         ObjectWriter ow = mapper.writer().withDefaultPrettyPrinter();

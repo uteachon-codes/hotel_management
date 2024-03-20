@@ -3,6 +3,8 @@ package com.hotel.exception;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.http.HttpStatus;
+import org.springframework.security.access.AccessDeniedException;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.validation.FieldError;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
@@ -79,6 +81,12 @@ public class GlobalExceptionHandler {
         Map<String, Integer> error = new HashMap<>();
         error.put(ex.getMessage(), ex.getEntityId());
         return error;
+    }
+
+    @ResponseStatus(HttpStatus.FORBIDDEN)
+    @ExceptionHandler(AccessDeniedException.class)
+    public String authorizationError() {
+        return "Insufficent Priviliges !!" ;
     }
 
 }

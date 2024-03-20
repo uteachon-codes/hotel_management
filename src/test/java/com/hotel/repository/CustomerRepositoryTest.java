@@ -10,12 +10,12 @@ import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 
 @DataJpaTest
-class CustomerRepositoryTest {
+public class CustomerRepositoryTest {
 
     @Autowired
     private CustomerRepository customerRepository;
 
-    Customer customer;
+    private Customer customer;
 
     @BeforeEach
     void setUp() {
