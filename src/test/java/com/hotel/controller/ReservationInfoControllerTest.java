@@ -12,6 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.http.MediaType;
+import org.springframework.security.test.context.support.WithMockUser;
 import org.springframework.test.web.servlet.MockMvc;
 
 import java.text.ParseException;
@@ -93,6 +94,7 @@ class ReservationInfoControllerTest {
     }
 
     @Test
+    @WithMockUser
     void testCreateReservation() throws Exception{
 
         ObjectMapper mapper = new ObjectMapper();
@@ -111,6 +113,7 @@ class ReservationInfoControllerTest {
     }
 
     @Test
+    @WithMockUser
     void testGetAllReservations() throws Exception {
         when(reservationService.getAllReservations()).thenReturn(reservationList);
 
@@ -120,6 +123,7 @@ class ReservationInfoControllerTest {
     }
 
     @Test
+    @WithMockUser
     void testGetReservationBetweenCheckInDates() throws Exception {
         when(reservationService.getReservationBetweenCheckInDates(sdf.parse("2024-01-01"),sdf.parse("2024-12-31")))
                 .thenReturn(reservationList);
@@ -129,6 +133,7 @@ class ReservationInfoControllerTest {
     }
 
     @Test
+    @WithMockUser
     void testGetReservationWithPartialName() throws Exception {
 
             when(reservationService.getReservationCustomerPartialFirstName("Robe")).thenReturn(new ArrayList<>(Collections.singleton(reservationList)));
@@ -139,6 +144,7 @@ class ReservationInfoControllerTest {
     }
 
    @Test
+   @WithMockUser
     void testGetreservationsByCustomerId() throws Exception{
         when(reservationService.reservationsByCustomerId(20)).thenReturn(new ArrayList<>(Collections.singleton(reservationOne)));
 

@@ -29,9 +29,6 @@ public class CustomerInfoController {
     @Autowired
     private CustomerService customerService;
 
-    @Autowired
-    private UserService userService;
-
     @PostMapping("/create")
     @PreAuthorize("hasAuthority('ROLE_MANAGER')" )
     public ResponseEntity<Customer> createCustomers(@Valid @RequestBody Customer customer) {

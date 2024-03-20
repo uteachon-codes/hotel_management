@@ -9,10 +9,14 @@ import com.hotel.service.CustomerService;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.http.MediaType;
+import org.springframework.security.test.context.support.WithMockUser;
+import org.springframework.test.context.ContextConfiguration;
+import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.test.web.servlet.MockMvc;
 
 import java.util.ArrayList;
@@ -25,6 +29,8 @@ import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @WebMvcTest(CustomerInfoController.class)
+@ExtendWith(SpringExtension.class)
+@ContextConfiguration
 class CustomerInfoControllerTest {
 
     @Autowired
@@ -79,6 +85,7 @@ class CustomerInfoControllerTest {
     }
 
     @Test
+    @WithMockUser
     void testCreateCustomers() throws Exception{
         ObjectMapper mapper = new ObjectMapper();
         mapper.configure(SerializationFeature.WRAP_ROOT_VALUE,false);
@@ -96,6 +103,7 @@ class CustomerInfoControllerTest {
     }
 
     @Test
+    @WithMockUser
     void testGetCustomers_Id() throws Exception {
 
         // Checks both found and not found
@@ -112,6 +120,7 @@ class CustomerInfoControllerTest {
     }
 
     @Test
+    @WithMockUser
     void testGetCustomersWhenCustomersAvailable() throws Exception{
 
       when(customerService.getAllCustomers()).thenReturn(customerList);
@@ -121,6 +130,7 @@ class CustomerInfoControllerTest {
               .andExpect(status().isOk());
     }
     @Test
+    @WithMockUser
     void testGetCustomersWhenNoCustomers() throws Exception{
 
         when(customerService.getAllCustomers()).thenThrow(new EntityNotFoundException("no customers list",0));
@@ -131,6 +141,7 @@ class CustomerInfoControllerTest {
     }
 
     @Test
+    @WithMockUser
     void testGetCustomerByName_Found() throws Exception {
 
         when(customerService.getCustomerByName("Robert","Williams")).thenReturn(new ArrayList<>(Collections.singleton(customerOne)));
@@ -140,6 +151,7 @@ class CustomerInfoControllerTest {
                 .andExpect(status().isOk());
     }
     @Test
+    @WithMockUser
     void testGetCustomerByName_Not_Found() throws Exception {
 
         when(customerService.getCustomerByName("Shami","Maise"))
@@ -151,6 +163,7 @@ class CustomerInfoControllerTest {
     }
 
     @Test
+    @WithMockUser
     void testUpdateCustomers() throws Exception {
 
         ObjectMapper mapper = new ObjectMapper();
@@ -169,6 +182,7 @@ class CustomerInfoControllerTest {
     }
 
     @Test
+    @WithMockUser
     void testGetCustomerByPartialFirstName_Found() throws Exception {
         when(customerService.getCustomerByPartialFirstName("Robe")).thenReturn(new ArrayList<>(Collections.singleton(customerOne)));
 
@@ -177,6 +191,7 @@ class CustomerInfoControllerTest {
                 .andExpect(status().isOk());
     }
     @Test
+    @WithMockUser
     void testGetCustomerByPartialFirstName_Not_Found() throws Exception {
         when(customerService.getCustomerByPartialFirstName("Mayt"))
                 .thenThrow(new EntityNotFoundException("Customer with given partial name", 0));
