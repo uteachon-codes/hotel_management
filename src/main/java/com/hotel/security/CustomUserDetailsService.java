@@ -1,4 +1,4 @@
-package com.hotel.service.impl;
+package com.hotel.security;
 
 import com.hotel.model.User;
 import com.hotel.repository.UserRepository;

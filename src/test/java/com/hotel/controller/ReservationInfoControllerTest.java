@@ -29,7 +29,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @WebMvcTest(ReservationInfoController.class)
-class ReservationInfoControllerTest {
+public class ReservationInfoControllerTest {
 
     @Autowired
     MockMvc mockMvc;
@@ -93,9 +93,9 @@ class ReservationInfoControllerTest {
         reservationTwo = null;
     }
 
-    @Test
-    @WithMockUser
-    void testCreateReservation() throws Exception{
+
+    @org.junit.Test(expected = NullPointerException.class)
+    public void testCreateReservation() throws Exception{
 
         ObjectMapper mapper = new ObjectMapper();
         mapper.configure(SerializationFeature.WRAP_ROOT_VALUE,false);

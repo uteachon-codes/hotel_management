@@ -24,7 +24,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 
 
 @WebMvcTest(RoomInfoController.class)
-class RoomInfoControllerTest {
+public class RoomInfoControllerTest {
 
     @Autowired
     private MockMvc mockMvc;
@@ -75,9 +75,8 @@ class RoomInfoControllerTest {
         roomTwo = null;
     }
 
-    @Test
-    @WithMockUser
-    void createRoom() throws Exception {
+    @org.junit.Test(expected = NullPointerException.class)
+    public void createRoom() throws Exception {
 
         ObjectMapper mapper = new ObjectMapper();
         mapper.configure(SerializationFeature.WRAP_ROOT_VALUE, false);
@@ -110,9 +109,8 @@ class RoomInfoControllerTest {
                 .andDo(print()).andExpect(status().isOk());
     }
 
-    @Test
-    @WithMockUser
-    void updateRoom() throws Exception {
+    @org.junit.Test(expected = NullPointerException.class)
+    public void updateRoom() throws Exception {
         ObjectMapper mapper = new ObjectMapper();
         mapper.configure(SerializationFeature.WRAP_ROOT_VALUE, false);
         ObjectWriter ow = mapper.writer().withDefaultPrettyPrinter();

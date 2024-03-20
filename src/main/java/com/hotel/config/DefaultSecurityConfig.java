@@ -1,6 +1,6 @@
 package com.hotel.config;
 
-import com.hotel.service.impl.CustomAuthenticationProvider;
+import com.hotel.security.CustomAuthenticationProvider;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;

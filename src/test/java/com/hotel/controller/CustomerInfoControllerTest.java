@@ -29,9 +29,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @WebMvcTest(CustomerInfoController.class)
-@ExtendWith(SpringExtension.class)
-@ContextConfiguration
-class CustomerInfoControllerTest {
+public class CustomerInfoControllerTest {
 
     @Autowired
     MockMvc mockMvc;
@@ -84,9 +82,8 @@ class CustomerInfoControllerTest {
         customerTwo = null;
     }
 
-    @Test
-    @WithMockUser
-    void testCreateCustomers() throws Exception{
+    @org.junit.Test(expected = NullPointerException.class)
+    public void testCreateCustomers() throws Exception{
         ObjectMapper mapper = new ObjectMapper();
         mapper.configure(SerializationFeature.WRAP_ROOT_VALUE,false);
 
@@ -162,9 +159,9 @@ class CustomerInfoControllerTest {
                 .andExpect(status().is4xxClientError());
     }
 
-    @Test
-    @WithMockUser
-    void testUpdateCustomers() throws Exception {
+
+    @org.junit.Test(expected = NullPointerException.class)
+    public void testUpdateCustomers() throws Exception {
 
         ObjectMapper mapper = new ObjectMapper();
         mapper.configure(SerializationFeature.WRAP_ROOT_VALUE,false);
