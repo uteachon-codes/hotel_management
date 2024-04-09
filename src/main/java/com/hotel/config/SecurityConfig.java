@@ -4,6 +4,7 @@ package com.hotel.config;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.config.Customizer;
 import org.springframework.security.config.annotation.authentication.configuration.AuthenticationConfiguration;
 import org.springframework.security.config.annotation.method.configuration.EnableMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -23,14 +24,14 @@ public class SecurityConfig {
 
     // Array of URLs to whitelist
     private static final String[] WHITE_LIST_URLS = {
-            "/","/signin"
+            "/", "/authenticate"
     };
 
     // UserDetailsService instance for user details retrieval
     private UserDetailsService userDetailsService;
 
     // Constructor injecting UserDetailsService
-    public SecurityConfig(UserDetailsService userDetailsService){
+    public SecurityConfig(UserDetailsService userDetailsService) {
         this.userDetailsService = userDetailsService;
     }
 
@@ -50,15 +51,16 @@ public class SecurityConfig {
                 .authorizeHttpRequests((authorize) ->
                         // Whitelist specific URLs
                         authorize.requestMatchers(WHITE_LIST_URLS).permitAll()
+//                                .requestMatchers(HttpMethod.OPTIONS,"/**").permitAll()
                                 // All other requests require authentication
                                 .anyRequest().authenticated()
                 )
-                // Disable Cross-Origin Resource Sharing (CORS)
-                .cors((cors->cors.disable()))
+                .cors(Customizer.withDefaults())
                 // Configure HTTP Basic authentication
                 .httpBasic(withDefaults());
 
         // Build and return the security filter chain
         return http.build();
     }
+
 }
