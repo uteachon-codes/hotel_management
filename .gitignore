@@ -47,10 +47,10 @@ app.log
 
 # UI-Files-React
 
-ui/hotel-mgmt-react/node_modules
-ui/hotel-mgmt-react/build/
-ui/hotel-mgmt-react/dist/
-ui/hotel-mgmt-react/.DS_Store
-ui/hotel-mgmt-react/.vscode
-ui/hotel-mgmt-react/.idea
+ui/node_modules/
+ui/build/
+ui/dist/
+ui/.DS_Store
+ui/.vscode
+ui/.idea
 
