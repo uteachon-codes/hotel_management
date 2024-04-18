@@ -11,7 +11,6 @@ import org.hibernate.annotations.DynamicInsert;
 import org.hibernate.annotations.DynamicUpdate;
 
 import java.util.Date;
-import java.util.HashMap;
 import java.util.Map;
 
 /**

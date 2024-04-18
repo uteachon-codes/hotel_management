@@ -33,7 +33,8 @@ public class ReservationInfoController {
     }
 
     @GetMapping("/get")
-    @PreAuthorize("hasAuthority('ROLE_USER') || hasAuthority('ROLE_MANAGER')" )
+//    @PreAuthorize("hasAuthority('ROLE_USER') || hasAuthority('ROLE_MANAGER')" )
+    @CrossOrigin
     public ResponseEntity<List<Reservation>> getAllReservations() {
         logger.info("Received GET request to fetch all reservations at /reserve/get.");
         return new ResponseEntity<List<Reservation>>(reservationService.getAllReservations(), HttpStatus.OK);

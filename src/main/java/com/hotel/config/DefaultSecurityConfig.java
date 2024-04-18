@@ -36,4 +36,5 @@ public class DefaultSecurityConfig {
         authenticationManagerBuilder
                 .authenticationProvider(customAuthenticationProvider);
     }
+
 }

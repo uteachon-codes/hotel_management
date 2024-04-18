@@ -51,6 +51,14 @@ public class RoomInfoController {
 
     }
 
+    @GetMapping(path = "/getbyroom/{roomNumber}")
+    @PreAuthorize("hasAuthority('ROLE_USER') || hasAuthority('ROLE_MANAGER')" )
+    public ResponseEntity<Room> getRoomByNumber(@Valid @PathVariable String roomNumber) {
+
+        return new ResponseEntity<>(roomService.getRoomByNumber(roomNumber), HttpStatus.OK);
+
+    }
+
     //	getAllRooms() method/endpoint handles a GET request to get All the rooms using methods in servcie layer
     @GetMapping("/get")
     @PreAuthorize("hasAuthority('ROLE_USER') || hasAuthority('ROLE_MANAGER')" )

@@ -20,4 +20,5 @@ public interface RoomService {
 
     Room updateRoomByFields(int id, Room room);
 
+    Room getRoomByNumber(String roomNumber);
 }
