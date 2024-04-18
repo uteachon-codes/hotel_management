@@ -44,3 +44,13 @@ Thumbs.db
 
 # Log files
 app.log
+
+# UI-Files-React
+
+ui/node_modules/
+ui/build/
+ui/dist/
+ui/.DS_Store
+ui/.vscode
+ui/.idea
+
